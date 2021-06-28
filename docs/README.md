@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://avatars.githubusercontent.com/u/56920162?s=400&u=ea2fd323389d38cd3adfcb41454201798eb20f30&v=4
+heroImage: ./RanxinInAvatar.md.png
 # heroImage: ./main-picture.jpg
 heroImageStyle: {
   width: '100vw',
