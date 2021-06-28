@@ -1,7 +1,7 @@
 /*
  * @Author: Zhilong
  * @Date: 2021-06-22 00:47:30
- * @LastEditTime: 2021-06-28 03:07:32
+ * @LastEditTime: 2021-06-28 17:18:13
  * @Description: 
  * @LastEditors: Zhilong
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
@@ -17,7 +17,8 @@ module.exports = {
   base: '/zh/',
   // 设置网站图标
   head: [
-    ['link', { rel: 'shortcut icon', type: "image/x-icon", href: `/favicon.ico` }]
+    ['link', { rel: 'shortcut icon', type: "image/x-icon", href: `https://img.ffis.me/images/2021/06/28/RanxinInAvatar.th.png` }],
+    ['script', { src: '/enhanceApp.js' }],
   ],
   themeConfig: {
     type: 'blog',
@@ -37,16 +38,16 @@ module.exports = {
       ]
     },
     // 导航栏配置
-    nav: [
-      { text: '首页', link: '/' },
-      {
-        text: '开发', icon: 'reco-document',
-        items: [
-          { text: '前端', link: '/web/01-vue3' },
-          { text: '后端', link: 'url' },
-          { text: '工具', link: 'path' }
-        ]
-      },
-    ],
+    // nav: [
+    //   { text: '首页', link: '/' },
+    //   {
+    //     text: '开发', icon: 'reco-document',
+    //     items: [
+    //       { text: '前端', link: '/web/01-vue3' },
+    //       { text: '后端', link: 'url' },
+    //       { text: '工具', link: 'path' }
+    //     ]
+    //   },
+    // ],
   },
 }
