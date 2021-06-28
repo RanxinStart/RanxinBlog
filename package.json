@@ -10,7 +10,8 @@
     "vuepress-theme-reco": "^1.6.6"
   },
   "scripts": {
-    "start": "vuepress dev docs --temp .temp",
+    "start": "yarn docs:dev",
+    "build": "yarn docs:build",
     "docs:dev": "vuepress dev docs --temp .temp",
     "docs:build": "vuepress build docs"
   }
