@@ -1,16 +1,12 @@
 /*
  * @Author: Zhilong
- * @Date: 2021-06-29 01:05:05
- * @LastEditTime: 2021-06-30 00:17:17
+ * @Date: 2021-06-30 00:06:23
+ * @LastEditTime: 2021-06-30 02:01:20
  * @Description: 
  * @LastEditors: Zhilong
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
  */
 
-// js入口
-
-import typedStart from './script/typed'
-window.addEventListener('load',typedStart)
-
+console.log('输出了???',`'输出了woc' => ${'输出了'}`)
 export default ({Vue, options, router, siteData, isServer}) => {
 }
