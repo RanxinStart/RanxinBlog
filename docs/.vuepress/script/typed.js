@@ -1,7 +1,7 @@
 /*
  * @Author: Zhilong
  * @Date: 2021-06-29 01:21:19
- * @LastEditTime: 2021-06-29 02:00:41
+ * @LastEditTime: 2021-06-29 09:24:03
  * @Description: 
  * @LastEditors: Zhilong
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
@@ -12,8 +12,8 @@ import Config from '../config'
 // 使用typed进行处理
 const typedHandle = (config) => {
     const id = 'typed-' + Math.random().toString(36).replace(/0./,'')
-    const tag = document.querySelector(config.cssSelect)
-    if (!tag) return console.error('指定的CssSelect错误', 'tag=>:' + tag)
+    const tag = document.querySelector(config.selector)
+    if (!tag) return console.error('指定的Selector错误', 'tag=>:' + tag)
     const tagValue = tag.innerText || tag.innerHTML
     // 子标签span化
     tag.innerHTML = `<span class='${id}'>${tagValue}</span>`
