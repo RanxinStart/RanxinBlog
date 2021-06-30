@@ -1,13 +1,12 @@
 /*
  * @Author: Zhilong
  * @Date: 2021-06-29 01:21:19
- * @LastEditTime: 2021-06-29 09:24:03
+ * @LastEditTime: 2021-06-30 22:53:06
  * @Description: 
  * @LastEditors: Zhilong
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
  */
 import Typed from 'typed.js'
-import Config from '../config'
 
 // 使用typed进行处理
 const typedHandle = (config) => {
@@ -26,12 +25,12 @@ const typedHandle = (config) => {
 
 
 // 按需引入
-export const typedStart = () => {
-    const { typed } = Config.ranxinConfig
-    if (Array.isArray(typed)) {
-        typed.forEach((item) => typedHandle(item))
+export const typedStart = (config) => {
+    console.log(config)
+    if (Array.isArray(config)) {
+        config.forEach((item) => typedHandle(item))
     } else {
-        typedHandle(typed)
+        typedHandle(config)
     }
 }
 

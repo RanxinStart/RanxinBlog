@@ -1,7 +1,7 @@
 /*
  * @Author: Zhilong
  * @Date: 2021-06-22 00:47:30
- * @LastEditTime: 2021-06-30 09:21:55
+ * @LastEditTime: 2021-06-30 22:50:39
  * @Description: 
  * @LastEditors: Zhilong
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
@@ -31,18 +31,6 @@ module.exports = {
   head: [
     ['link', { rel: 'shortcut icon', type: "image/x-icon", href: `https://img.ffis.me/images/2021/06/28/RanxinInAvatar.th.png` }],
   ],
-  ranxinConfig: {
-    // 打字识别
-    typed:
-    {
-      // 对应的标签
-      selector: '.home-blog .hero h1',
-      // 打字内容
-      strings: ["燃芯的剥壳", "燃芯的博客", "RanxinBlog", "Ranxin's blog"],
-      typeSpeed: 80, // 打字速度
-      backSpeed: 50 // 回退速度
-    },
-  },
   themeConfig: {
     type: 'blog',
     // 博客配置
