@@ -1,13 +1,16 @@
 /*
  * @Author: Zhilong
  * @Date: 2021-06-30 00:03:28
- * @LastEditTime: 2021-06-30 02:02:52
+ * @LastEditTime: 2021-06-30 09:05:39
  * @Description: 
  * @LastEditors: Zhilong
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
  */
 
 const path = require('path');
+
+console.log('??')
+
 module.exports = (options, ctx) => {
     return {
         async ready() {
