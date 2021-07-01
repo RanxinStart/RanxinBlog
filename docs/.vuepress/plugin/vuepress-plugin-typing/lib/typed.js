@@ -1,7 +1,7 @@
 /*
  * @Author: Zhilong
  * @Date: 2021-06-29 01:21:19
- * @LastEditTime: 2021-07-02 01:13:05
+ * @LastEditTime: 2021-07-02 02:35:36
  * @Description: 
  * @LastEditors: Zhilong
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
@@ -17,6 +17,7 @@ const typedHandle = (config) => {
     // 子标签span化
     tag.innerHTML = `<span class='${id}'>${tagValue}</span>`
     new Typed('.' + id, {
+        ...config,
         strings: [''].concat(config.strings), //输入内容, 支持html标签
         typeSpeed: config.typeSpeed || 100, //打字速度
         backSpeed: config.backSpeed || 50 //回退速度
