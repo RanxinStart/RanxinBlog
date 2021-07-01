@@ -1,15 +1,16 @@
 /*
  * @Author: Zhilong
  * @Date: 2021-06-30 00:06:23
- * @LastEditTime: 2021-07-01 18:43:00
+ * @LastEditTime: 2021-07-02 01:12:32
  * @Description: 
  * @LastEditors: Zhilong
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
  */
 
 import typedStart from './typed'
-export default ({Vue, options, router, siteData, isServer}) => {
-    // console.log({Vue, options, router, siteData, isServer})
-    console.log('eapp')
-    window.addEventListener('load',typedStart(siteData))
+/** define 配置之后 拿取变量 */
+const options = GLOBAL_PLUGIN_TYPED_OPTION
+
+export default () => {
+    window.addEventListener('load',typedStart.bind(this,options))
 }

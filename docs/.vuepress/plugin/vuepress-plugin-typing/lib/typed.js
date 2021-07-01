@@ -1,7 +1,7 @@
 /*
  * @Author: Zhilong
  * @Date: 2021-06-29 01:21:19
- * @LastEditTime: 2021-07-01 18:05:29
+ * @LastEditTime: 2021-07-02 01:13:05
  * @Description: 
  * @LastEditors: Zhilong
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
@@ -26,7 +26,6 @@ const typedHandle = (config) => {
 
 // 按需引入
 export const typedStart = (config) => {
-    console.log(config,'???')
     if (Array.isArray(config)) {
         config.forEach((item) => typedHandle(item))
     } else {

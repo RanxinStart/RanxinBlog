@@ -1,7 +1,7 @@
 /*
  * @Author: Zhilong
  * @Date: 2021-06-22 00:47:30
- * @LastEditTime: 2021-07-01 15:17:01
+ * @LastEditTime: 2021-07-02 01:00:44
  * @Description: 
  * @LastEditors: Zhilong
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
@@ -10,7 +10,7 @@
 
 module.exports = {
   plugins: [
-    [require('./plugin/vuepress-plugin-typing'), {
+    [require('./plugin/vuepress-plugin-typing'),{
       // 对应的标签
       selector: '.home-blog .hero h1',
       // 打字内容
