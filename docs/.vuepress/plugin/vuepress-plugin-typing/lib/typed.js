@@ -1,7 +1,7 @@
 /*
  * @Author: Zhilong
  * @Date: 2021-06-29 01:21:19
- * @LastEditTime: 2021-06-30 22:53:06
+ * @LastEditTime: 2021-07-01 18:05:29
  * @Description: 
  * @LastEditors: Zhilong
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
@@ -12,7 +12,7 @@ import Typed from 'typed.js'
 const typedHandle = (config) => {
     const id = 'typed-' + Math.random().toString(36).replace(/0./,'')
     const tag = document.querySelector(config.selector)
-    if (!tag) return console.error('指定的Selector错误', 'tag=>:' + tag)
+    if (!tag) return console.error('指定的Selector错误', 'tag => ' + tag)
     const tagValue = tag.innerText || tag.innerHTML
     // 子标签span化
     tag.innerHTML = `<span class='${id}'>${tagValue}</span>`
@@ -26,7 +26,7 @@ const typedHandle = (config) => {
 
 // 按需引入
 export const typedStart = (config) => {
-    console.log(config)
+    console.log(config,'???')
     if (Array.isArray(config)) {
         config.forEach((item) => typedHandle(item))
     } else {
