@@ -1,6 +1,7 @@
 [![img](https://img.shields.io/github/issues/RanxinStart/vuepress-plugin-typing.svg)](https://github.com/RanxinStart/vuepress-plugin-typing/issues)
 [![img](https://img.shields.io/github/forks/RanxinStart/vuepress-plugin-typing.svg)](https://github.com/RanxinStart/vuepress-plugin-typing/network/members)
 [![img](https://img.shields.io/github/stars/RanxinStart/vuepress-plugin-typing.svg)](https://github.com/RanxinStart/vuepress-plugin-typing/stargazers)
+[![NPM version](https://img.shields.io/npm/dt/vuepress-plugin-typing.svg)](https://www.npmjs.com/package/vuepress-plugin-typing)
 [![NPM version](https://img.shields.io/npm/v/vuepress-plugin-typing.svg)](https://www.npmjs.com/package/vuepress-plugin-typing)
 
 
