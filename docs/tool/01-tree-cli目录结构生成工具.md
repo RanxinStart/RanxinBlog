@@ -1,11 +1,13 @@
 ---
-title: 这里是标题
-date: 现在的时间
+title: 目录结构生成工具
+date: '2021-7-5 23:15:37'
 categories:
-  - 划分的文件夹
-tags: 
-  - 标签
-
+ - 工具
+ - 服务端
+tags:
+ - cli
+ - tree
+ - tool
 ---
 
 # Build And Config
