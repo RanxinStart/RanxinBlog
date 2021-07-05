@@ -15,5 +15,10 @@
     "build": "yarn docs:build",
     "docs:dev": "vuepress dev docs --temp .temp",
     "docs:build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "vuepress-plugin-dynamic-title": "^1.0.0",
+    "vuepress-plugin-nprogress": "^1.1.8",
+    "vuepress-plugin-permalink-pinyin": "^1.0.0"
   }
 }
