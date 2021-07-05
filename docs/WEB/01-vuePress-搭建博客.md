@@ -1,11 +1,11 @@
 ---
-title: 这里是标题
-date: 现在的时间
+title: vuePress搭建博客
+date: '2021-7-5 23:15:37'
 categories:
-  - 划分的文件夹
-tags: 
-  - 标签
-
+ - 前端
+tags:
+ - vue
+ - vuePress
 ---
 
 # Build And Config
