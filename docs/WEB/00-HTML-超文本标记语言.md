@@ -2,10 +2,126 @@
 title: HTML 超文本标记语言
 date: 2020-11-01
 categories:
-  - 前端学习笔记
+  - 前端
 tags: 
   - html
 ---
+
+# 常用标签
+
+> 或许常用 推荐使用 更多的语义化
+
+## 语义化
+
+### 1.视频video
+
+```html
+<video src="movie.ogg" controls="controls">
+您的浏览器不支持 video 标签。
+</video>
+```
+
+> 属性值 需要更多样式调整使用`style`或`class`属性
+
+| 属性                                                         | 值       | 描述                                                         |
+| :----------------------------------------------------------- | :------- | :----------------------------------------------------------- |
+| [autoplay](https://www.w3school.com.cn/tags/att_video_autoplay.asp) | autoplay | 如果出现该属性，则视频在就绪后马上播放。                     |
+| [controls](https://www.w3school.com.cn/tags/att_video_controls.asp) | controls | 如果出现该属性，则向用户显示控件，比如播放按钮。             |
+| [height](https://www.w3school.com.cn/tags/att_video_height.asp) | *pixels* | 设置视频播放器的高度。                                       |
+| [loop](https://www.w3school.com.cn/tags/att_video_loop.asp)  | loop     | 如果出现该属性，则当媒介文件完成播放后再次开始播放。         |
+| [muted](https://www.w3school.com.cn/tags/att_video_muted.asp) | muted    | 规定视频的音频输出应该被静音。                               |
+| [poster](https://www.w3school.com.cn/tags/att_video_poster.asp) | *URL*    | 规定视频下载时显示的图像，或者在用户点击播放按钮前显示的图像。 |
+| [preload](https://www.w3school.com.cn/tags/att_video_preload.asp) | preload  | 如果出现该属性，则视频在页面加载时进行加载，并预备播放。如果使用 "autoplay"，则忽略该属性。 |
+| [src](https://www.w3school.com.cn/tags/att_video_src.asp)    | *url*    | 要播放的视频的 URL。                                         |
+| [width](https://www.w3school.com.cn/tags/att_video_width.asp) | *pixels* | 设置视频播放器的宽度。                                       |
+
+---
+
+### 2.音频audio
+
+```html
+<audio src="someaudio.wav">
+您的浏览器不支持 audio 标签。
+</audio>
+```
+
+| 属性                                                         | 值       | 描述                                                         |
+| :----------------------------------------------------------- | :------- | :----------------------------------------------------------- |
+| [autoplay](https://www.w3school.com.cn/tags/att_audio_autoplay.asp) | autoplay | 如果出现该属性，则音频在就绪后马上播放。                     |
+| [controls](https://www.w3school.com.cn/tags/att_audio_controls.asp) | controls | 如果出现该属性，则向用户显示控件，比如播放按钮。             |
+| [loop](https://www.w3school.com.cn/tags/att_audio_loop.asp)  | loop     | 如果出现该属性，则每当音频结束时重新开始播放。               |
+| [muted](https://www.w3school.com.cn/tags/att_audio_muted.asp) | muted    | 规定视频输出应该被静音。                                     |
+| [preload](https://www.w3school.com.cn/tags/att_audio_preload.asp) | preload  | 如果出现该属性，则音频在页面加载时进行加载，并预备播放。如果使用 "autoplay"，则忽略该属性。 |
+| [src](https://www.w3school.com.cn/tags/att_audio_src.asp)    | *url*    | 要播放的音频的 URL。                                         |
+
+---
+
+### 3.画布canvas
+
+```html
+<canvas id="myCanvas">
+您的浏览器不支持 canvas 标签。
+</canvas>
+```
+
+> 可设置的属性并不多 主要使用 `javaScript`进行控制
+
+| 属性                                                         | 值       | 描述                 |
+| :----------------------------------------------------------- | :------- | :------------------- |
+| [height](https://www.w3school.com.cn/tags/att_canvas_height.asp) | *pixels* | 设置 canvas 的高度。 |
+| [width](https://www.w3school.com.cn/tags/att_canvas_width.asp) | *pixels* | 设置 canvas 的宽度。 |
+
+## 布局
+
+### 1.代码展示容器
+
+>  `<var> `标签是计算机文档中应用的另一个小窍门
+>
+>  这个标签经常与和`<code>`与`<pre>`标签一起使用，用来显示计算机编程代码范例及类似方面的特定元素。
+
+### 2.等宽字体容器
+
+> `<tt>`标签是让包裹内容变为等宽字体的标签
+
+### 3.文字正序倒序容器
+
+> ​	`<bdo>`标签是让包裹内容设置文字显示顺序的标签
+
+```html
+<!-- <bdo dir="ltr"> -->
+<bdo dir="rtl">
+Here is some Hebrew text
+</bdo>
+```
+
+#### 效果说明
+
+> 显示时 `txet werbeH emos si ereH`
+>
+> 复制时`Here is some Hebrew text`
+
+### 4.居中布局标签
+
+> <center>标签是让包裹内容左右居中的标签
+
+## 特性
+
+### 1.* 指定换行点标签
+
+> 指定对应的位置进行自动换行的标签
+
+![wbr标签效果](..\..\docs\.vuepress\public\md-image\web\wbr标签效果.png)
+
+```html
+<p>
+如果想学习 AJAX，那么您必须熟悉 XML<wbr>Http<wbr>Request 对象。
+</p>
+```
+
+
+
+# 单元内容
+
 ## 文档元数据
 
 元数据（Metadata）含有页面的相关信息，包括样式、脚本及数据，能帮助一些软件（例如 [搜索引擎](https://developer.mozilla.org/en-US/docs/Glossary/search_engine)、[浏览器](https://developer.mozilla.org/en-US/docs/Glossary/Browser) 等等）更好地运用和渲染页面。对于样式和脚本的元数据，可以直接在网页里定义，也可以链接到包含相关信息的外部文件。
@@ -102,7 +218,7 @@ HTML 提供了许多可一起使用的元素，这些元素能用来创建一个
 | `<option>`    | 用于定义在`<select>`, `<optgroup>`或`<datalist>`元素中包含的项。 |
 | `<label>`     | 表示用户界面中某个元素的说明。                               |
 
-## Web 组件标签
+## * Web 组件标签
 
 | 元素         | 描述                                                         |
 | :----------- | :----------------------------------------------------------- |
