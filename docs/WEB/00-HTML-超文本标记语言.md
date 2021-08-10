@@ -13,7 +13,9 @@ tags:
 
 ## 语义化
 
-### 1.视频video
+### 1.视频video 
+
+> 和视频相关联的字幕标签[<track>](https://www.runoob.com/tags/tag-track.html)
 
 ```html
 <video src="movie.ogg" controls="controls">
@@ -70,22 +72,63 @@ tags:
 | :----------------------------------------------------------- | :------- | :------------------- |
 | [height](https://www.w3school.com.cn/tags/att_canvas_height.asp) | *pixels* | 设置 canvas 的高度。 |
 | [width](https://www.w3school.com.cn/tags/att_canvas_width.asp) | *pixels* | 设置 canvas 的宽度。 |
+|                                                              |          |                      |
+
+### 4.进度条progress
+
+​		定义一个进度条progress,可以设置最大值和当前值
+
+```html
+<progress value="22" max="100"></progress>
+```
+
+### 5.计量值meter
+
+​		`<meter>` 标签定义度量衡。仅用于已知最大和最小值的度量。
+
+​		比如：磁盘使用情况，查询结果的相关性等
+
+> **注意：** `<meter> `不能作为一个进度条来使用， 进度条` progress `标签。
+
+| 属性                                                         | 值        | 描述                                     |
+| :----------------------------------------------------------- | :-------- | :--------------------------------------- |
+| [form](https://www.runoob.com/tags/att-meter-form.html)      | *form_id* | 规定`<meter>` 元素所属的一个或多个表单。 |
+| [high](https://www.runoob.com/tags/att-meter-high.html)      | *number*  | 规定被界定为高的值的范围。               |
+| [low](https://www.runoob.com/tags/att-meter-low.html)        | *number*  | 规定被界定为低的值的范围。               |
+| [max](https://www.runoob.com/tags/att-meter-max.html)        | *number*  | 规定范围的最大值。                       |
+| [min](https://www.runoob.com/tags/att-meter-min.html)        | *number*  | 规定范围的最小值。                       |
+| [optimum](https://www.runoob.com/tags/att-meter-optimum.html) | *number*  | 规定度量的最优值。                       |
+| [value](https://www.runoob.com/tags/att-meter-value.html)    | *number*  | 必需。规定度量的当前值。                 |
+
+### 6.时间time
+
+​		`<time>`标签在显示中没有什么实际作用
+
+​		用户代理能够把生日提醒或排定的事件添加到用户日程表中，搜索引擎也能够生成更智能的搜索结果。
+
+> 这个是用来给搜索引擎、爬虫等机器识别的一个语义化标签
+
+```html
+<p>我在<time datetime="2016-02-14">情人节</time>有个约会。</p>
+```
 
 ## 布局
 
 ### 1.代码展示容器
 
->  `<var> `标签是计算机文档中应用的另一个小窍门
->
+​		`<var> `标签是计算机文档中应用的另一个小窍门
+
 >  这个标签经常与和`<code>`与`<pre>`标签一起使用，用来显示计算机编程代码范例及类似方面的特定元素。
 
 ### 2.等宽字体容器
 
-> `<tt>`标签是让包裹内容变为等宽字体的标签
+​		`<tt>`标签是让包裹内容变为等宽字体的标签
 
 ### 3.文字正序倒序容器
 
-> ​	`<bdo>`标签是让包裹内容设置文字显示顺序的标签
+​		`<bdo>`标签是让包裹内容设置文字显示顺序的标签 
+
+> 实际上`bdo`标签和`dir`属性分别有对应的功能
 
 ```html
 <!-- <bdo dir="ltr"> -->
@@ -96,13 +139,70 @@ Here is some Hebrew text
 
 #### 效果说明
 
-> 显示时 `txet werbeH emos si ereH`
->
-> 复制时`Here is some Hebrew text`
+```markdown
+显示时 txet werbeH emos si ereH
+复制时 Here is some Hebrew text
+```
 
 ### 4.居中布局标签
 
 > <center>标签是让包裹内容左右居中的标签
+
+### 5.文字备注标签
+
+​	`<ruby> `标签定义 ruby 注释（中文注音或字符）
+
+​	`<rt>`标签定义文字上方的内容
+
+​	效果就是... <ruby>这<rt>我是这的备注</rt>样<rt></rt>子<rt>zi</rt></ruby>
+
+## 属性
+
+> 如果需要查看所有的`Element`节点的全部属性需要使用`console.dir`才可以输出..
+
+### 1.* 指定内容可以编辑
+
+​		标签中添加属性`contenteditable`可以指定该标签可以编辑
+
+```html
+<p contenteditable>这是一个段落。是可编辑的。尝试修改文本。</p>
+```
+
+### 2.* 嵌入自定义数据
+
+​		标签中添加`data-*`可以添加自定义数据
+
+> 在使用`getAttribute`获取属性时可以获得相应的值 其实`this.dataset.custom`也可以..
+
+```html
+<p onclick="alert(this.getAttribute('data-custom'))" data-custom="自定义数据值">普通标签</p>
+<!-- this.dataset.custom也可以.. -->
+<p onclick="alert(this.dataset.custom)" data-custom="自定义数据值">普通标签</p>
+```
+
+### 3.* 节点拖拽
+
+​		使用`draggable`组合事件 实现更加方便的拖拽事件
+
+> 详见：[拖拽案例](../h.html)
+
+### 4.节点隐藏(奇了个大葩)
+
+​		该段落不会在`html`中显示...
+
+```html
+<p hidden>这是一段隐藏的段落。</p>
+```
+
+### 5.* Tab键导航顺序
+
+​		在标签中添加`tabindex="5"`可以设置Tab导航的顺序
+
+```html
+<a href="//www.runoob.com//" tabindex="2"> runoob.com 菜鸟教程</a><br />
+<a href="//www.google.com/" tabindex="1">Google</a><br />
+<a href="//www.microsoft.com/" tabindex="3">Microsoft</a>
+```
 
 ## 特性
 
@@ -117,8 +217,6 @@ Here is some Hebrew text
 如果想学习 AJAX，那么您必须熟悉 XML<wbr>Http<wbr>Request 对象。
 </p>
 ```
-
-
 
 # 单元内容
 
