@@ -1,6 +1,6 @@
 ---
 title: HTML 超文本标记语言
-date: 2020-11-01
+date: 2021-08-10
 categories:
   - 前端
 tags: 
@@ -100,15 +100,15 @@ Here is some Hebrew text
 >
 > 复制时`Here is some Hebrew text`
 
-### 4.居中布局标签
+### 4.<s>居中布局标签(已弃用)</s>
 
-> <center>标签是让包裹内容左右居中的标签
+> `<center>`标签是让包裹内容左右居中的标签
 
 ## 特性
 
 ### 1.* 指定换行点标签
 
-> 指定对应的位置进行自动换行的标签
+> 指定对应的位置进行自动换行的标签 
 
 ![wbr标签效果](..\..\docs\.vuepress\public\md-image\web\wbr标签效果.png)
 
