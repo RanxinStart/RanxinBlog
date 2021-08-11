@@ -1,7 +1,7 @@
 /*
  * @Author: Zhilong
  * @Date: 2021-07-04 18:16:09
- * @LastEditTime: 2021-07-06 00:49:41
+ * @LastEditTime: 2021-08-06 20:44:07
  * @Description: 
  * @LastEditors: Zhilong
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
@@ -17,13 +17,6 @@ module.exports = [
             typeSpeed: 80, // 打字速度
             backSpeed: 50, // 回退速度
             showCursor: false,
-        }, {
-            // 对应的标签
-            selector: '.home-blog .hero .description',
-            // 打字内容
-            strings: ["blogforvue", "输入一些消息吧", "就离谱", "博客说明"],
-            typeSpeed: 80, // 打字速度
-            backSpeed: 50 // 回退速度
         }
     ]
     ],
