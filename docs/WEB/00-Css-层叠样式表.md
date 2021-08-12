@@ -208,6 +208,36 @@ background-origin: (content-box | padding-box)
 | initial                                                      | 设置属性为其默认值。 [阅读关于 *initial*的介绍。](https://www.runoob.com/cssref/css-initial.html) |
 | inherit                                                      | 从父元素继承属性。 [阅读关于 *initinherital*的介绍。](https://www.runoob.com/cssref/css-inherit.html) |
 
+## CSS特殊偏方
+
+### 1. 单行和多行省略
+
+> 在超出大小时 容器的`overflow`和文字的`text-overflow`进行省略处理
+
+```css
+// 单行省略
+overflow : hidden;
+text-overflow: ellipsis;
+// 多行省略
+overflow : hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+```
+
+### 2. 黑白滤镜
+
+```css
+filter: grayscale(100%);
+```
+
+### 3. 点击穿透
+
+```css
+pointer-events: none;
+```
+
 ## CSS的特殊性 (specificity)
 
 ​		特殊性是一个选择器"特殊程度"的数字表示。它可以描述成一个4个位置的点数串: 0.0.0.0 。
