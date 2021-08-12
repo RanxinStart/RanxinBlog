@@ -208,6 +208,18 @@ background-origin: (content-box | padding-box)
 | initial                                                      | 设置属性为其默认值。 [阅读关于 *initial*的介绍。](https://www.runoob.com/cssref/css-initial.html) |
 | inherit                                                      | 从父元素继承属性。 [阅读关于 *initinherital*的介绍。](https://www.runoob.com/cssref/css-inherit.html) |
 
+3.弹性盒子(flex)
+
+>  flex: `flex-grow`  `flex-shrink`  `flex-basis`;
+>
+> flex:`flex扩展量占比`  `flex收缩量占比` `前面两的单位(任意长度单位)`
+
+### n. 多列布局(columns)
+
+> columns: `column-width`  `column-count`;
+>
+> columns: `列宽度`  `列数`
+
 ## CSS特殊偏方
 
 ### 1. 单行和多行省略
@@ -373,6 +385,53 @@ linear-gradient(0deg, blue, green 40%, red);
 | [rgb()](https://www.runoob.com/cssref/func-rgb-css.html)     | 使用红(R)、绿(G)、蓝(B)三个颜色的叠加来生成各式各样的颜色。  | 2        |
 | [rgba()](https://www.runoob.com/cssref/func-rgba.html)       | 使用红(R)、绿(G)、蓝(B)、透明度(A)的叠加来生成各式各样的颜色。 | 3        |
 | [var()](https://www.runoob.com/cssref/func-var.html)         | 用于插入自定义的属性值。                                     | 3        |
+
+## column 布局
+
+> CSS 多列布局允许我们轻松定义多列文本 - 就像报纸那样 轻松分切
+
+### 1. 指定列数
+
+```css
+column-count: 3;  // 指定分为三列
+```
+
+### 2. 指定列之间的间隙
+
+```css
+column-gap: 40px;  // 间隔为40px
+```
+
+### 3. 指定间隔边框
+
+```css
+column-rule:1px solid blue; // 就像边框那样
+// 当然你也可以分着来
+column-rule-width: 1px;
+column-rule-style: solid;
+column-rule-color: blue;
+```
+
+4.指定容器跨越列数
+
+> 仅支持 跨越全部和 保持原样...
+
+```css
+column-span: 1; // 只会在一列内(默认值)
+column-span: all; // 占满！跨越全部列
+```
+
+5.指定每列的最佳宽度
+
+> 假如设置的宽度只能两列显示，即使设置了三列也会变成两列
+
+```css
+column-width: 100px; // 每列的最佳宽度在 100px
+// column容器 250px 那么会分两列
+// column容器 150px 那么就不会分列了
+```
+
+
 
 ## flex 容器
 
