@@ -4,6 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build":"browserify ."
+    "build": "browserify . > dist/build.js"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0"
   }
 }

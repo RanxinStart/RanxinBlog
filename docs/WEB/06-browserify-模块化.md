@@ -11,20 +11,20 @@
 > 安装
 
 ```bash
-// 使用yarn全局安装
-$yarn global add browserify
-// 使用npm全局安装
-$npm install -g browserify
+# 使用yarn安装
+$yarn add browserify -D
+# 使用npm安装
+$ npm i browserify --save-dev
 ```
 
 ## 模块化打包使用
 
-### 	1.引入其他模块使用
+### 	1. 引入其他模块使用
 
-​		其他模块文件 导出`foo`方法
+​		其他模块文件 导出一个对象 含有`foo`方法
 
 ```js
-// module.js
+// > src/module.js
 module.exports = {
   foo() {
     console.log('moudle foo()')
@@ -36,10 +36,47 @@ module.exports = {
 
 ```js
 // main.js
-const module = require('./module') // 使用其他模块
-module.foo() //使用其他模块的方法
+const srcModule = require('./src/module') // 使用其他模块
+srcModule.foo() //使用其他模块的方法
 ```
 
+### 2. 添加打包命令
 
+```json
+// package.json
+{
+  "scripts": {
+    "build": "browserify . > build.js"
+  }
+    ...
+}
 
-## 
+// 需要打包到指定文件夹
+// 1.先创建对应文件夹
+// $md dist
+// 然后
+{
+  "scripts": {
+    "build": "browserify . > dist/build.js"
+  }
+    ...
+}
+```
+
+> 执行命令进行打包 `yarn build` | `npm run build`
+
+### 3. `html`使用打包后的文件
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>build file test</title>
+</head>
+<body>
+    <script src="dist/build.js"></script>
+</body>
+</html>
+```
+
