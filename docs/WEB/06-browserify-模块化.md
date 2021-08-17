@@ -40,6 +40,8 @@ const srcModule = require('./src/module') // 使用其他模块
 srcModule.foo() //使用其他模块的方法
 ```
 
+> 最后会打包到一个`js`文件内
+
 ### 2. 添加打包命令
 
 ```json
