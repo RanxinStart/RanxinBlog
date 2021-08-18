@@ -1,0 +1,12 @@
+{
+  "name": "browserify",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "browserify . > dist/build.js"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0"
+  }
+}
