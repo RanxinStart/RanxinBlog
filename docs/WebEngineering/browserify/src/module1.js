@@ -1,5 +1,6 @@
+
 module.exports = {
   foo() {
-    console.log('moudle foo()')
+    console.log('module.exports')
   }
 }
