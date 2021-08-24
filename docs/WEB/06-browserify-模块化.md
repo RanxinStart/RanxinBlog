@@ -64,22 +64,23 @@ console.log('uniq',uniq([1,1,2,2,3,4,1]))  //使用外部模块的方法
 
 ### 2. 添加打包命令
 
+> `-o`是命令的形式  `>`是`cmd`的形式，区别在于 `-o`可以在没有创建目录自动创建目录，而`>`会报错
+
 ```json
 // package.json
 {
   "scripts": {
-    "build": "browserify . > build.js"
+    "build": "browserify ./index.js -o build.js",
+    "build1": "browserify ./index.js > build.js"
   }
     ...
 }
 
 // 需要打包到指定文件夹
-// 1.先创建对应文件夹
-// $md dist
-// 然后
 {
   "scripts": {
-    "build": "browserify . > dist/build.js"
+    "build": "browserify ./index.js -o dist/build.js",
+    "build1": "browserify ./index.js > dist/build.js"
   }
     ...
 }
