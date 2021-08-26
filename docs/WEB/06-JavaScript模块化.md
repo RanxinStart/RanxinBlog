@@ -210,3 +210,40 @@ require(['math'], function (math) {
 
 ​		目前，主要有两个`Javascript`库实现了`AMD`规范：[`require.js`](http://requirejs.org/)和[`curl.js`](https://github.com/cujojs/curl)。
 
+###  四、`RequireJS`
+
+​		`RequireJS`是一个基于`AMD`规范的库
+
+#### 一、如果不使用`requireJs`和`AMD`规范
+
+```bash
+# 目录结构
+├── index.html
+├── index.js
+└── noRequireJs
+   ├── module1.js
+   └── module2.js
+```
+
+
+
+​		假如有个基础的模块`module1`  还有个依赖于`module1 `的模块`modele2`
+
+```js
+// module1.js
+(()=>{
+    const getName = () => "module1"
+    return window.module1 = { getName }
+})()
+
+// module2.js
+((module1)=>{
+    const output = () =>{
+        console.log('我调用了模块1的方法:' + module1.getName())
+    }
+    return window.module2 = { output }
+})(module1)
+```
+
+
+
