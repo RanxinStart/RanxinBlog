@@ -42,24 +42,45 @@ srcModule.foo() //使用其他模块的方法
 
 > 最后会打包到一个`js`文件内
 
+### 1.5 引入外部的模块
+
+​		安装一个外部的模块 
+
+>  演示使用的是一个去重方法 `uniq`
+
+```bash
+$ yarn add uniq
+```
+
+​		直接引入使用
+
+> 打包后依然可用
+
+```js
+// main.js
+const uniq = require('uniq') // 使用外部模块
+console.log('uniq',uniq([1,1,2,2,3,4,1]))  //使用外部模块的方法
+```
+
 ### 2. 添加打包命令
+
+> `-o`是命令的形式  `>`是`cmd`的形式，区别在于 `-o`可以在没有创建目录自动创建目录，而`>`会报错
 
 ```json
 // package.json
 {
   "scripts": {
-    "build": "browserify . > build.js"
+    "build": "browserify ./index.js -o build.js",
+    "build1": "browserify ./index.js > build.js"
   }
     ...
 }
 
 // 需要打包到指定文件夹
-// 1.先创建对应文件夹
-// $md dist
-// 然后
 {
   "scripts": {
-    "build": "browserify . > dist/build.js"
+    "build": "browserify ./index.js -o dist/build.js",
+    "build1": "browserify ./index.js > dist/build.js"
   }
     ...
 }

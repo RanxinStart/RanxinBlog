@@ -4,9 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "browserify . > dist/build.js"
+    "build": "browserify ./index.js > dist/build.js",
+    "build1": "browserify ./index.js -o dist/build.js"
   },
   "devDependencies": {
     "browserify": "^17.0.0"
+  },
+  "dependencies": {
+    "uniq": "^1.0.1"
   }
 }
