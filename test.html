@@ -1,7 +1,7 @@
 <!--
  * @Author: Zhilong
  * @Date: 2021-07-14 15:28:29
- * @LastEditTime: 2021-08-26 09:37:55
+ * @LastEditTime: 2021-08-26 14:33:01
  * @Description: 
  * @LastEditors: Zhilong
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
@@ -14,14 +14,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-
-        const str = '>123456'
-        for (const value of str) {
-            console.log(value)
-            console.count('strSize')
-        }
+Object.prototype[Symbol.iterator] = function* () {
+    for (const key in this) {
+        yield [key, this[key]]
+    }
+}
+const obj = { a: 0, b: 1 }
+for (const [key, value] of obj) {
+    console.log(key, value)
+}
     </script>
 </body>
+
 </html>
