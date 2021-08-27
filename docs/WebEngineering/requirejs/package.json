@@ -4,6 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "requirejs": "^2.3.6"
+    "jquery": "^3.6.0",
+    "requirejs": "^2.3.6",
+    "uniq": "^1.0.1"
   }
 }

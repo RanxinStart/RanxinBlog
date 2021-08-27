@@ -225,8 +225,6 @@ require(['math'], function (math) {
    └── module2.js
 ```
 
-
-
 ​		假如有个基础的模块`module1`  还有个依赖于`module1 `的模块`modele2`
 
 ```js
@@ -245,5 +243,182 @@ require(['math'], function (math) {
 })(module1)
 ```
 
+​		在主要的JS文件中使用`modele2`的输出功能
 
+```js
+// index.js
+module2.output() // 调用输出方法
+```
 
+​		最后在页面中使用
+
+```html
+<!-- index.html -->
+<!-- 这时 必须要先执行module1 才能在module2内拿到module1的实例 -->
+<!-- 最后再用index调用 否则会报错 -->
+<script src="./noRequireJs/module1.js"></script>
+<script src="./noRequireJs/module2.js"></script>
+<script src="./index.js"></script>
+```
+
+#### 二、使用`requireJs`和`AMD`规范
+
+```bash
+#目录结构
+├── index.html
+├── index.js
+├── node_modules
+|  └── requirejs
+|     └── require.js
+└── useRequire
+   ├── module1.js
+   └── module2.js
+```
+
+​		添加requirejs
+
+```bash
+$yarn add requirejs
+```
+
+​		假如有个基础的模块`module1`  还有个依赖于`module1 `的模块`modele2`
+
+```js
+// module1.js
+define(()=>{
+    const getName = () => 'module1'
+    return { getName }
+})
+
+// module2.js
+define(['module1'],(module1)=>{
+    const output = () => console.log('module2调用' + module1.getName)
+    return { output }
+})
+```
+
+​		将所有模块配置到`requirejs`	
+
+```js
+// index.js
+requirejs.config({
+    baseUrl: './',  // 基础Url
+    paths: {  // 模块路径列表
+        module1: './useRequire/module1',  // 模块名和对应的路径
+        module2: './useRequire/module2'   // 注意！模块路径不需要加 .js 
+    }
+})
+```
+
+​		在主要的JS文件中使用`modele2`的输出功能
+
+```js
+// index.js
+requirejs(['module2'], (module2) => {
+    module2.output()
+})
+```
+
+​		最后在页面中使用
+
+```html
+<!-- data-main是JS主文件路径  src使用包里的require.js  -->
+<script data-main="./index" src="./node_modules/requirejs/require.js"></script>
+```
+
+#### 三、使用外部的模块
+
+​		假如要使用外部的jquery模块，先安装或下载文件，然后配置到requirejs，即可任意使用。
+
+> 需要支持AMD规范的库，才可以**直接**使用
+
+```js
+// jquery 支持amd, 在define是一个函数且是amd  会定义 jquery模块并返回
+if ( typeof define === "function" && define.amd ) {
+    // 这里的第一个参数为String，所以在引用时必须命名为jquery才能使用
+	define( "jquery", [], function() {
+		return jQuery;
+	} );
+}
+```
+
+​		添加jquery模块
+
+```bash
+$yarn add jquery
+```
+
+​		配置到requirejs
+
+```js
+// index.js
+requirejs.config({
+    baseUrl: './',  // 基础Url
+    paths: {  // 模块路径列表
+        module1: './useRequire/module1',  // 模块名和对应的路径
+        module2: './useRequire/module2'   // 注意！模块路径不需要加 .js 
+        jquery:'./node_modules/jquery/dist/jquery'
+    }
+})
+```
+
+​		在任意模块中使用 
+
+```js
+// module2.js
+define(['module1', 'jquery'], (module1, $) => {
+    const output = () => {
+        console.log('module2调用' + module1.getName)
+        // 调用output时 将背景修改为#6cf
+        $(document.body).css('background','#6cf')
+    }
+    return { output }
+})
+```
+
+#### 四、使用非AMD模块
+
+​		假如要使用非AMD模块，需要额外配置`shim`。这里拿uniq举例
+
+```bash
+$yarn add uniq
+```
+
+​		配置requirejs
+
+```js
+// index.js
+requirejs.config({
+    baseUrl: './',
+    paths: {
+        module1: './useRequire/module1',
+        module2: './useRequire/module2',
+        jquery: './node_modules/jquery/dist/jquery',
+        uniq: './node_modules/uniq/uniq'
+    },
+    shim: {
+        uniq: {
+            exports: 'unique'  // uniq中方法的unique 所以是 unique
+        }
+    }
+})
+```
+
+​		在任意模块使用
+
+```js
+// module2.js
+define(['module1', 'jquery', 'uniq'], (module1, $, uniq) => {
+    const output = () => {
+        // 使用module1
+        console.log('module2调用' + module1.getName)
+        // 使用jquery
+        $(document.body).css('background', '#6cf')
+        // uniq
+        console.log(uniq([1, 3, 6, 3, 5, 6, 4, 3]))
+    }
+    return { output }
+})
+```
+
+## ES6模块化

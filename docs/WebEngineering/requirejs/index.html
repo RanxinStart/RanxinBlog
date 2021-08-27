@@ -1,7 +1,7 @@
 <!--
  * @Author: Zhilong
  * @Date: 2021-08-25 09:32:01
- * @LastEditTime: 2021-08-25 09:48:54
+ * @LastEditTime: 2021-08-26 17:43:51
  * @Description: 
  * @LastEditors: Zhilong
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
@@ -15,10 +15,11 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- 这时 必须要先执行module1 才能在module2内拿到module1的实例 -->
-    <!-- 最后再用index调用 否则会报错 -->
-    <script src="./noRequireJs/module1.js"></script>
-    <script src="./noRequireJs/module2.js"></script>
-    <script src="./index.js"></script>
+<!-- 这时 必须要先执行module1 才能在module2内拿到module1的实例 -->
+<!-- 最后再用index调用 否则会报错 -->
+<!-- <script src="./noRequireJs/module1.js"></script> -->
+<!-- <script src="./noRequireJs/module2.js"></script> -->
+<!-- <script type="module" src="./index.js"></script> -->
+<script data-main="./index" src="./node_modules/requirejs/require.js"></script>
 </body>
 </html>

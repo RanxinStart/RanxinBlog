@@ -1,13 +1,14 @@
 <!--
  * @Author: Zhilong
  * @Date: 2021-07-14 15:28:29
- * @LastEditTime: 2021-08-26 14:33:01
+ * @LastEditTime: 2021-08-26 15:15:56
  * @Description: 
  * @LastEditors: Zhilong
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
 -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,16 +18,15 @@
 
 <body>
     <script>
-Object.prototype[Symbol.iterator] = function* () {
-    for (const key in this) {
-        yield [key, this[key]]
-    }
-}
-const obj = { a: 0, b: 1 }
-for (const [key, value] of obj) {
-    console.log(key, value)
-}
+        Object.prototype[Symbol.iterator] = function* () {
+            for (const key in this) {
+                yield [key, this[key]]
+            }
+        }
+        const obj = { a: 0, b: 1 }
+        for (const [key, value] of obj) {
+            console.log(key, value)
+        }
     </script>
 </body>
-
 </html>
