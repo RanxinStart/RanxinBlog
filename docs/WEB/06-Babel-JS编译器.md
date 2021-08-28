@@ -65,6 +65,16 @@ module.exports = {
 }
 ```
 
+​		.babelrc的没有有些许不同
+
+```js
+// .babelrc
+{
+	"presets":[],
+	"plugins":[]
+}
+```
+
 
 
 ## 预设 Preset

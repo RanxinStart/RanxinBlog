@@ -422,3 +422,147 @@ define(['module1', 'jquery', 'uniq'], (module1, $, uniq) => {
 ```
 
 ## ES6模块化
+
+### 一、使用browserify
+
+#### 1.工具and流程
+
+- es6+
+- @babel/preset-env
+- @babel/cli
+- @babel/core
+- browserify
+
+> es6 => babel => browserify => browser
+
+#### 2. 为什么要使用babel
+
+​		browserify是将CommonJS编译成单文件供web使用，但**CommonJS并不支持es6的export和import**的语法。所以要使用@babel/preset-env将**es6+语法编译转换为CommonJS**后使用browserify打包
+
+#### 3.  安装依赖
+
+```bash
+# 安装@babel/preset-env     es6+转es5的预设
+$yarn add @babel/preset-env --dev
+# 安装browserify
+$yarn add browserify --dev
+```
+
+#### 4. 配置babel转换
+
+​		根目录下创建.babelrc或babel.config.js文件
+
+```js
+// .babelrc
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "ie": "9"
+                }
+            }
+        ]
+    ]
+}
+```
+
+#### 5.创建相应文件夹和文件
+
+```bash
+├── index.html # html文件
+├── package.json # 包文件
+└── src 
+   ├── index.js # 主要js目录
+   └── module # 存放模块的位置
+      └── module1.js
+```
+
+#### 6. 使用es6的import和export语法模块化
+
+```js
+// module1.js
+export const output = () =>{
+    console.log('我是module1')
+}
+```
+
+```js
+// index.js
+import { output } from "./module/module1"
+output() // 使用module1的方法
+```
+
+#### 7. 使用babel编译为es5语法
+
+​		在package内 加入编译命令  babel 目标路径 -d 输出路径
+
+```js
+// package.json
+"scripts": {
+    "babel": "babel ./src -d ./babel-build"
+}
+```
+
+​		运行babel编译
+
+```bash
+$yarn babel
+```
+
+#### 8. 使用browserify打包
+
+​		这时使用babel打包后，es6的import会变为CommonJs的模块化语法
+
+```js
+// babel编译后的 index.js
+"use strict";
+var _module = require("./module/module1");
+(0, _module.output)(); // 使用module1的方法
+```
+
+​		使用browserify将CommonJS编译为单文件
+
+​		添加browserify打包命令
+
+```js
+// package.json
+"scripts": {
+    "babel": "babel ./src -d ./babel-build",
+    "browserify": "browserify ./babel-build -o ./dist/index.js"
+},
+```
+
+​		运行browserify打包命令
+
+```bash
+$yarn browserify
+```
+
+#### 9. 在html中引入即可使用
+
+```html
+<!-- index.html -->
+<script src="dist/index.js"></script>
+```
+
+​		运行index.html打开控制台里面会有 “我是module1” 
+
+#### 10. 组合打包命令
+
+```js
+// package.json
+"scripts": {
+    "babel": "babel ./src -d ./babel-build",
+    "browserify": "browserify ./babel-build -o ./dist/index.js",
+    "build": "yarn babel && yarn browserify"
+},
+```
+
+​		使用一键将babel和browserify打包编译 刷新浏览器即可查看最新输出
+
+```bash
+$yarn build
+```
+
