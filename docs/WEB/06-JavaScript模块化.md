@@ -566,3 +566,4 @@ $yarn browserify
 $yarn build
 ```
 
+## 二、使用RequireJs
