@@ -1,0 +1,15 @@
+{
+  "name": "WebPack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack ./index.js -o ./dist --mode=development",
+    "dev1": "webpack --entry ./index.js --output-path ./dist --mode=development",
+    "build": "webpack ./index.js -o ./dist --mode=production"
+  },
+  "devDependencies": {
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0"
+  }
+}
