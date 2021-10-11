@@ -1,11 +1,14 @@
 {
   "name": "vuepress-plugin-typing",
-  "version": "1.0.0-Alpha.0",
+  "version": "1.0.0",
   "description": "VuePress plugin for typing",
   "keywords": [
     "vuepress",
     "plugin",
-    "typing"
+    "typing",
+    "type",
+    "animition",
+    "typist"
   ],
   "main": "lib/index.js",
   "author": "@Ranxin",

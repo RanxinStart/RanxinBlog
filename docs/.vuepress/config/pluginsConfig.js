@@ -7,7 +7,7 @@
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
  */
 module.exports = [
-    [require('../plugin/vuepress-plugin-typing'),
+    ['typing',
     [
         {
             // 对应的标签
@@ -34,7 +34,7 @@ module.exports = [
         'permalink-pinyin',
         {
             lowercase: true, // Converted into lowercase, default: true
-            separator: '\t' // Separator of the slug, default: '-'
+            separator: '-' // Separator of the slug, default: '-'
         }
     ],
     [

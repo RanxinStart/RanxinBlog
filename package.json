@@ -8,8 +8,11 @@
   "dependencies": {
     "requirejs": "^2.3.6",
     "vuepress": "^1.8.2",
+    "vuepress-plugin-dynamic-title": "^1.0.0",
     "vuepress-plugin-helper-live2d": "^1.0.2",
-    "vuepress-plugin-typing": "^0.1.0",
+    "vuepress-plugin-nprogress": "^1.1.8",
+    "vuepress-plugin-permalink-pinyin": "^1.0.0",
+    "vuepress-plugin-typing": "^1.0.0",
     "vuepress-theme-reco": "^1.6.6"
   },
   "scripts": {
@@ -17,10 +20,5 @@
     "build": "yarn docs:build",
     "docs:dev": "vuepress dev docs --temp .temp -p 80 --host 0.0.0.0",
     "docs:build": "vuepress build docs"
-  },
-  "devDependencies": {
-    "vuepress-plugin-dynamic-title": "^1.0.0",
-    "vuepress-plugin-nprogress": "^1.1.8",
-    "vuepress-plugin-permalink-pinyin": "^1.0.0"
   }
 }
