@@ -210,7 +210,7 @@ Here is some Hebrew text
 
 > 指定对应的位置进行自动换行的标签 
 
-![wbr标签效果](..\..\docs\.vuepress\public\md-image\web\wbr标签效果.png)
+![wbr标签效果](../../docs/.vuepress/public/md-image/web/wbr.png)
 
 ```html
 <p>
