@@ -8,19 +8,19 @@
  */
 module.exports = [
     ['typing',
-    [
-        {
-            // 对应的标签
-            selector: '.home-blog .hero h1',
-            // 打字内容
-            strings: ["燃芯的^1000剥壳", "燃芯的博客", "Ranxin^1000Blog", "Ranxin's blog"],
-            typeSpeed: 80, // 打字速度
-            backSpeed: 50, // 回退速度
-            showCursor: false,
-        }
-    ]
+        [
+            {
+                // 对应的标签
+                selector: '.home-blog .hero h1',
+                // 打字内容
+                strings: ["燃芯的^1000剥壳", "燃芯的博客", "Ranxin^1000Blog", "Ranxin's blog"],
+                typeSpeed: 80, // 打字速度
+                backSpeed: 50, // 回退速度
+                showCursor: false,
+            }
+        ]
     ],
-    ['vuepress-plugin-nprogress',{}]
+    ['nprogress', {}],
     ['dynamic-title',
         {
             showIcon: 'https://img.ffis.me/images/2021/06/28/RanxinInAvatar.th.png',
@@ -38,7 +38,7 @@ module.exports = [
         }
     ],
     [
-        'vuepress-plugin-helper-live2d', {
+        'helper-live2d', {
             // 是否开启控制台日志打印(default: false)
             log: false,
             live2d: {

@@ -31,21 +31,21 @@
 <!-- <body>
     <p>魔幻写法</p>
     <div ondrop="event.target.appendChild(document.getElementById(event.dataTransfer.getData('Name')))" ondragover="event.preventDefault()"></div>
-    <img id='img' src="../.vuepress/public/RanxinInAvatar.md.png" draggable ondragstart="event.dataTransfer.setData('Name',this.id)">
+    <img id='img' src="https://img.ffis.me/images/2021/06/28/RanxinInAvatar.md.png" draggable ondragstart="event.dataTransfer.setData('Name',this.id)">
     <p>每一个html中的事件 并非是绑定 而是一个function</p>
-    < img id='img' src="../.vuepress/public/RanxinInAvatar.md.png" draggable ondragstart="console.log(arguments)">
+    < img id='img' src="https://img.ffis.me/images/2021/06/28/RanxinInAvatar.md.png" draggable ondragstart="console.log(arguments)">
 </body> -->
 
 <body>
     <p>这就叫污染全局</p>
     <div ondrop="this.appendChild(window['TagName'])" ondragover="event.preventDefault()"></div>
-    <img id='img' src="../.vuepress/public/RanxinInAvatar.md.png" draggable ondragstart="window.TagName = this">
+    <img id='img' src="https://img.ffis.me/images/2021/06/28/RanxinInAvatar.md.png" draggable ondragstart="window.TagName = this">
 </body>
 
 <!-- <body>
     <div ondrop="drop(event)" ondragover="event.preventDefault()"></div>
     <div ondrop="drop(event)" ondragover="event.preventDefault()">
-        <img id='img' src="../.vuepress/public/RanxinInAvatar.md.png" draggable ondragstart="dragstart(event, this)">
+        <img id='img' src="https://img.ffis.me/images/2021/06/28/RanxinInAvatar.md.png" draggable ondragstart="dragstart(event, this)">
     </div>
 </body> -->
 

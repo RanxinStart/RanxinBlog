@@ -18,7 +18,7 @@
   "scripts": {
     "start": "yarn docs:dev",
     "build": "yarn docs:build",
-    "docs:dev": "vuepress dev docs --temp .temp -p 80 --host 0.0.0.0",
+    "docs:dev": "vuepress dev docs --temp .temp",
     "docs:build": "vuepress build docs"
   }
 }
