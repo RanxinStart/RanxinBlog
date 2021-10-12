@@ -1,5 +1,5 @@
 ---
-title: vuepress插件开发
+title: VuePress插件开发
 date: '2021-7-5 23:26:27'
 categories:
   - 前端
