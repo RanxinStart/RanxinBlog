@@ -4,8 +4,9 @@ date: '2021-7-5 23:15:37'
 categories:
  - 前端
 tags:
- - router
- - vue
+ - JavaScript
+ - Vue
+ - Route
 ---
 
 # Build And Config

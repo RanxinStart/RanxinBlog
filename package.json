@@ -7,18 +7,22 @@
   "license": "MIT",
   "dependencies": {
     "requirejs": "^2.3.6",
-    "vuepress": "^1.8.2",
+    "vuepress": "^1.5.4",
+    "vuepress-plugin-dehydrate": "^1.1.5",
     "vuepress-plugin-dynamic-title": "^1.0.0",
     "vuepress-plugin-helper-live2d": "^1.0.2",
     "vuepress-plugin-nprogress": "^1.1.8",
     "vuepress-plugin-permalink-pinyin": "^1.0.0",
     "vuepress-plugin-typing": "^1.0.0",
-    "vuepress-theme-reco": "^1.6.6"
+    "vuepress-theme-reco": "^1.5.7"
   },
   "scripts": {
     "start": "yarn docs:dev",
     "build": "yarn docs:build",
     "docs:dev": "vuepress dev docs --temp .temp",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "pub": "yarn del && yarn to",
+    "del": "sudo rm -rf /usr/share/nginx/html/*",
+    "to": "sudo mv ./docs/.vuepress/dist/* /usr/share/nginx/html/"
   }
 }

@@ -5,8 +5,7 @@ sidebar: 'auto'
 categories:
  - 前端
 tags:
- - 标准
- - ECMA
+ - JavaScript
 
 ---
 

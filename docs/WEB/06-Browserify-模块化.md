@@ -1,3 +1,15 @@
+---
+title: Browserify模块和构建
+date: '2021-8-25 16:25:10'
+sidebar: 'auto'
+categories:
+ - 前端
+ - 服务端
+tags:
+ - ENV
+ - 尘埃
+---
+
 ## 大概介绍
 
 1. **浏览器端**的前端**打包**工具

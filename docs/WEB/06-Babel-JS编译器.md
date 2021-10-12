@@ -3,9 +3,10 @@ title: Babel-JS编译器
 date: '2021-8-27 16:25:30'
 sidebar: 'auto'
 categories:
- - 编译
+ - 前端
+ - 服务端
 tags:
- - Babel
+ - ENV
 ---
 
 ## 前言

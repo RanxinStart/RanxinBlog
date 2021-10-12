@@ -1,3 +1,14 @@
+---
+title: JavaScript模块化 
+date: '2021-9-13 11:10:33'
+sidebar: 'auto'
+categories:
+ - 文章
+tags:
+ - 前端
+ - 尘埃
+---
+
 ## [前言](https://www.ruanyifeng.com/blog/2012/10/javascript_module.html)
 
 ### 模块化需求

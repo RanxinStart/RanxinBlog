@@ -7,6 +7,7 @@
  * @autograph: ⚠ warning!  ⚠ warning!  ⚠ warning!   ⚠野生的页面出现了!!
  */
 module.exports = [
+    'dehydrate',
     ['typing',
         [
             {
@@ -21,15 +22,15 @@ module.exports = [
         ]
     ],
     ['nprogress', {}],
-    ['dynamic-title',
-        {
-            showIcon: 'https://img.ffis.me/images/2021/06/28/RanxinInAvatar.th.png',
-            showText: '(/≧▽≦/)咦！又好了！',
-            hideIcon: 'https://img.ffis.me/images/2021/06/28/RanxinInAvatar.th.png',
-            hideText: '(●—●)喔哟，崩溃啦！',
-            recoverTime: 2000,
-        }
-    ],
+    // ['dynamic-title',
+    //     {
+    //         showIcon: 'https://img.ffis.me/images/2021/06/28/RanxinInAvatar.th.png',
+    //         showText: '(/≧▽≦/)咦！又好了！',
+    //         hideIcon: 'https://img.ffis.me/images/2021/06/28/RanxinInAvatar.th.png',
+    //         hideText: '(●—●)喔哟，崩溃啦！',
+    //         recoverTime: 2000,
+    //     }
+    // ],
     [
         'permalink-pinyin',
         {
