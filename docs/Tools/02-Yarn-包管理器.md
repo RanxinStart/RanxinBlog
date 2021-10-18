@@ -92,7 +92,7 @@ $ yarn -v
 会在当前目录下初始化一个包配置
 
 ```bash
-$yarn init
+$ yarn init
 ```
 
 ```bash
@@ -151,7 +151,7 @@ $ yarn global list
 ## 移除依赖包
 
 ```bash
-$yarn remove [package]
+$ yarn remove [package]
 ```
 
 ## 安装项目全部依赖

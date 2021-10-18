@@ -24,7 +24,7 @@ tags:
 
 ```bash
 # 使用yarn安装
-$yarn add browserify -D
+$ yarn add browserify -D
 # 使用npm安装
 $ npm i browserify --save-dev
 ```

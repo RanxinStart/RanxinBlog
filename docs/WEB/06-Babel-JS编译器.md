@@ -51,7 +51,7 @@ tags:
 
 ```bash
 # 安装babel插件
-$yarn add babel-plugin-xxx
+$ yarn add babel-plugin-xxx
 ```
 
 ​		将插件的名字增加到配置文件中 (根目录下创建 .babelrc 或者 package.json 的 `babel` 里面，格式相同)
@@ -242,7 +242,7 @@ require("./index.ts");
 ### 二、安装
 
 ```bash
-$yarn add @babel/polyfill --dev
+$ yarn add @babel/polyfill --dev
 ```
 
 ### 三、使用
