@@ -1,6 +1,7 @@
 ---
 title: Vite工程化
 date: '2021-7-5 23:15:37'
+sidebar: 'auto'
 categories:
  - 前端
  - 服务端

@@ -1,9 +1,9 @@
 ---
 title: SSH-Keygen密钥
 date: '2021-10-13 15:59:59'
+sidebar: 'auto'
 categories:
  - 命令行
- - 文章
 tags:
  - Cli
  - Tool

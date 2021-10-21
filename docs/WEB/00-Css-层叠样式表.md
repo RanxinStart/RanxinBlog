@@ -1,6 +1,7 @@
 ---
 title: CSS
 date: 2021-8-11
+sidebar: 'auto'
 categories:
   - 前端
 tags: 

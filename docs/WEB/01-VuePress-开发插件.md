@@ -1,6 +1,7 @@
 ---
 title: VuePress插件开发
 date: '2021-7-5 23:26:27'
+sidebar: 'auto'
 categories:
   - 前端
   - 服务端

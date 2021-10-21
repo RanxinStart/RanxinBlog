@@ -1,6 +1,7 @@
 ---
 title: Yarn包管理器
 date: '2021-10-12 15:54:59'
+sidebar: 'auto'
 categories:
  - 命令行
 tags:

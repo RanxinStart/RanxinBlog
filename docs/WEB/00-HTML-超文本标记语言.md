@@ -1,6 +1,7 @@
 ---
 title: HTML5和语义化
 date: 2021-08-10
+sidebar: 'auto'
 categories:
   - 前端
 tags: 
