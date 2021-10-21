@@ -93,7 +93,7 @@ $ yarn -v
 会在当前目录下初始化一个包配置
 
 ```bash
-$yarn init
+$ yarn init
 ```
 
 ```bash
@@ -152,7 +152,7 @@ $ yarn global list
 ## 移除依赖包
 
 ```bash
-$yarn remove [package]
+$ yarn remove [package]
 ```
 
 ## 安装项目全部依赖
@@ -173,7 +173,7 @@ $ yarn install --flat
 
 ## 用户自定义脚本
 
-与npm run <script>一致，实际上是使用yarn run <script>运行的，不过填写运行命令时，yarn的run是可以省略的
+与npm run script一致，实际上是使用yarn run script运行的，不过填写运行命令时，yarn的run是可以省略的
 
 ```bash
 $ yarn <script> [<args>]

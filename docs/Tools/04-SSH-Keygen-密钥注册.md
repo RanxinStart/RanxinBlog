@@ -71,7 +71,7 @@ tags:
 ​		使用SSH_keygen生成后，会生成公钥和蜜月两个 文件，默认的文件名是**id_[type]**，例如我使用默认生成rsa类型的ssh那么
 
 ```bash
-$ssh-keygen #什么都不填，默认rsa类型生成在用户.ssh文件夹中
+$ ssh-keygen #什么都不填，默认rsa类型生成在用户.ssh文件夹中
 
 #用户.ssh目录下
 id_rsa # 密钥文件
@@ -82,7 +82,7 @@ id_rsa.pub  # 公钥文件
 
 ```bash
 #  ~/  代表用户根目录
-$cd ~/.ssh
+$ cd ~/.ssh
 ```
 
 ## SSH存放目录
@@ -90,7 +90,7 @@ $cd ~/.ssh
 ​		默认的存放目录会在用户文件夹中.ssh内，可以使用选项-f来指定文件夹和文件名
 
 ```bash
-$ssh-keygen -f C:\Users\admin\.ssh\ssh_name
+$ ssh-keygen -f C:\Users\admin\.ssh\ssh_name
 ```
 
 ## SSH查看指定指纹
@@ -98,7 +98,7 @@ $ssh-keygen -f C:\Users\admin\.ssh\ssh_name
 ​		查看已有的SSH信息，如果没有使用-f指定某个指纹信息，将会询问是否打开在.ssh文件下面其中的一条SSH。
 
 ```bash
-$ssh-keygen -l -f C:\Users\admin\.ssh\ssh_name
+$ ssh-keygen -l -f C:\Users\admin\.ssh\ssh_name
 ```
 
 ## SSH查看指定密文
@@ -106,19 +106,19 @@ $ssh-keygen -l -f C:\Users\admin\.ssh\ssh_name
 ​		生成SSH及是为了远程连接，所以要将自己SSH公钥中的密文复制出来交给需要通讯的SSH。
 
 ```bash
-$cat C:\Users\admin\.ssh\ssh_name.pub # 通常来说，都是复制公钥
+$ cat C:\Users\admin\.ssh\ssh_name.pub # 通常来说，都是复制公钥
 ```
 
 ## SSH设定密码
 
 ```bash
-$ssh-keygen -N root -C "Info"
+$ ssh-keygen -N root -C "Info"
 ```
 
 ## SSH修改密码
 
 ```bash
 # -p表示重新生成 -f指定修改文件 -C 修改的描述信息 -N修改的密码
-$ssh-keygen -p -f .\test_rsa  -C "Ranxin235" -N root
+$ ssh-keygen -p -f .\test_rsa  -C "Ranxin235" -N root
 ```
 
