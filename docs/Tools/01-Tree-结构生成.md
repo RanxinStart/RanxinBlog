@@ -1,13 +1,12 @@
 ---
 title: 目录结构生成工具
 date: '2021-7-5 23:15:37'
+sidebar: 'auto'
 categories:
- - 工具
- - 服务端
+ - 命令行
 tags:
- - cli
- - tree
- - tool
+ - Cli
+ - Tool
 ---
 
 # Build And Config

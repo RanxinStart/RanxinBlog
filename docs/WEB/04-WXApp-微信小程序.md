@@ -1,11 +1,10 @@
 ---
-title: wxapp微信小程序
+title: 微信小程序
 date: '2021-7-5 23:15:37'
+sidebar: 'auto'
 categories:
  - 前端
 tags:
- - Server
- - Applets
 ---
 
 # Build And Config

@@ -1,11 +1,13 @@
 ---
-title: vuepress插件开发
+title: VuePress插件开发
 date: '2021-7-5 23:26:27'
+sidebar: 'auto'
 categories:
   - 前端
-  - 开源
+  - 服务端
 tags: 
-  - vue
+  - Vue
+  - Plugin
 ---
 
 # Build And Config

@@ -1,12 +1,12 @@
 ---
-title: ECMAScript6~11 
+title: Webpack自动化构建 
 date: '2021-8-14 10:37:21'
 sidebar: 'auto'
 categories:
  - 前端
+ - 服务端
 tags:
- - 构建
-
+ - ENV
 ---
 
 ## 一、Webpack是什么
@@ -107,8 +107,8 @@ console.log(json1,module1())
 ##### 		安装打包依赖
 
 ```bash
-$yarn add webpack --dev
-$yarn add webpack-cli --dev
+$ yarn add webpack --dev
+$ yarn add webpack-cli --dev
 ```
 
 ##### 		添加打包命令
@@ -123,7 +123,7 @@ $yarn add webpack-cli --dev
 ##### 		进行打包
 
 ```bash
-$yarn dev
+$ yarn dev
 ```
 
 #### Ⅲ. 使用打包后代码

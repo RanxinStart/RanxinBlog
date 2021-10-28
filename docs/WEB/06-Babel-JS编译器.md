@@ -3,9 +3,10 @@ title: Babel-JS编译器
 date: '2021-8-27 16:25:30'
 sidebar: 'auto'
 categories:
- - 编译
+ - 前端
+ - 服务端
 tags:
- - Babel
+ - ENV
 ---
 
 ## 前言
@@ -50,7 +51,7 @@ tags:
 
 ```bash
 # 安装babel插件
-$yarn add babel-plugin-xxx
+$ yarn add babel-plugin-xxx
 ```
 
 ​		将插件的名字增加到配置文件中 (根目录下创建 .babelrc 或者 package.json 的 `babel` 里面，格式相同)
@@ -241,7 +242,7 @@ require("./index.ts");
 ### 二、安装
 
 ```bash
-$yarn add @babel/polyfill --dev
+$ yarn add @babel/polyfill --dev
 ```
 
 ### 三、使用

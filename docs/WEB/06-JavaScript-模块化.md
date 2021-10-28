@@ -1,3 +1,14 @@
+---
+title: JavaScript模块化 
+date: '2021-9-13 11:10:33'
+sidebar: 'auto'
+categories:
+ - 文章
+tags:
+ - 前端
+ - 尘埃
+---
+
 ## [前言](https://www.ruanyifeng.com/blog/2012/10/javascript_module.html)
 
 ### 模块化需求
@@ -278,7 +289,7 @@ module2.output() // 调用输出方法
 ​		添加requirejs
 
 ```bash
-$yarn add requirejs
+$ yarn add requirejs
 ```
 
 ​		假如有个基础的模块`module1`  还有个依赖于`module1 `的模块`modele2`
@@ -345,7 +356,7 @@ if ( typeof define === "function" && define.amd ) {
 ​		添加jquery模块
 
 ```bash
-$yarn add jquery
+$ yarn add jquery
 ```
 
 ​		配置到requirejs
@@ -381,7 +392,7 @@ define(['module1', 'jquery'], (module1, $) => {
 ​		假如要使用非AMD模块，需要额外配置`shim`。这里拿uniq举例
 
 ```bash
-$yarn add uniq
+$ yarn add uniq
 ```
 
 ​		配置requirejs
@@ -443,9 +454,9 @@ define(['module1', 'jquery', 'uniq'], (module1, $, uniq) => {
 
 ```bash
 # 安装@babel/preset-env     es6+转es5的预设
-$yarn add @babel/preset-env --dev
+$ yarn add @babel/preset-env --dev
 # 安装browserify
-$yarn add browserify --dev
+$ yarn add browserify --dev
 ```
 
 #### 4. 配置babel转换
@@ -508,7 +519,7 @@ output() // 使用module1的方法
 ​		运行babel编译
 
 ```bash
-$yarn babel
+$ yarn babel
 ```
 
 #### 8. 使用browserify打包
@@ -537,7 +548,7 @@ var _module = require("./module/module1");
 ​		运行browserify打包命令
 
 ```bash
-$yarn browserify
+$ yarn browserify
 ```
 
 #### 9. 在html中引入即可使用
@@ -563,7 +574,7 @@ $yarn browserify
 ​		使用一键将babel和browserify打包编译 刷新浏览器即可查看最新输出
 
 ```bash
-$yarn build
+$ yarn build
 ```
 
 ## 二、使用RequireJs
