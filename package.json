@@ -6,8 +6,7 @@
   "author": "Ranxin",
   "license": "MIT",
   "dependencies": {
-    "requirejs": "^2.3.6",
-    "vuepress": "^1.5.4",
+    "vuepress": "^1.8.2",
     "vuepress-plugin-dehydrate": "^1.1.5",
     "vuepress-plugin-dynamic-title": "^1.0.0",
     "vuepress-plugin-helper-live2d": "^1.0.2",
