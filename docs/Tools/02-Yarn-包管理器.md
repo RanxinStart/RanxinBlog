@@ -228,7 +228,7 @@ $ yarn create vite vite-app
 
 > ##### `yarn generate-lock-entry`
 
-## 生成Yarn的Lock缓存
+## 生成Yarn的锁文件(Lock)
 
 将npm生成的`package-lock.js`或现有的`node_modules`生成一份`yarn.lock`
 
