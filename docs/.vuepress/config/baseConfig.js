@@ -10,7 +10,7 @@ module.exports = {
     // 文档标题
   // title: "Ranxin's blog",
   // title: "燃芯知识日志",
-  title: "燃芯的技术体系",
+  title: "燃芯的技术文档",
   // 文档说明
   description: 'blog for vue',
   // 静态资源基本路径
