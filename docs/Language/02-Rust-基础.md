@@ -1,3 +1,13 @@
+---
+title: Rust-基础
+date: '2021-12-8 13:16'
+sidebar: 'auto'
+categories:
+ - 语言
+tags:
+ - language
+---
+
 # Rust
 
 ## 一、简单介绍Rust
