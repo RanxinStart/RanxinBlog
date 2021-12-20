@@ -17,16 +17,13 @@ tags:
 
 ## 初始化安装
 
-### 1.先安装``yarn``
+### 1.快速初始化一个`vite`项目
 
-```bash
-$ npm i yarn -g
-```
-
-### 2.使用`yarn`初始化一个`vite + vue`项目
+> yarn 
 
 ```bash
 $ yarn create @vitejs/app  #初始化vite项目
+$ yarn create vite #同上 二选一
 
 # 初始化 Start #
 √ Project name: ... RanxinForVue
@@ -36,6 +33,298 @@ $ yarn create @vitejs/app  #初始化vite项目
 # 初始化 End #
 
 $ yarn #安装依赖
+```
+
+> npm
+
+```bash
+$ npx init vite #初始化vite项目
+
+# 初始化 Start #
+√ Project name: ... RanxinForVue
+√ Package name: ... ranxinforvue
+√ Select a framework: » vue
+√ Select a variant: » vue-ts
+# 初始化 End #
+
+$ npm i #安装依赖
+```
+
+### 2.手动初始化一个`vite`项目
+
+#### 1.初始化一个NPM或Yarn
+
+> 先创建一个目录... 我这就略过了
+
+```bash
+$ npm init #npm 初始化
+$ yarn init #yarn 初始化
+```
+
+#### 2.为项目安装vite
+
+```bash
+$ npm add vite -D
+$ yarn add vite --dev
+```
+
+#### 3.创建vite的入口文件
+
+你可能已经注意到，在一个 Vite 项目中，`index.html` 在项目最外层而不是在 `public` 文件夹内。这是有意而为之的：在开发期间 Vite 是一个服务器，而 `index.html` 是该 Vite 项目的入口文件
+
+```
+root
+├── index.html
+├── node_modules
+└── package.json
+```
+
+> index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="app">我已经被Vite监听了！</div>
+</body>
+</html>
+```
+
+> 启动vite
+
+```bash
+$ npx vite
+```
+
+Vite 将 `index.html` 视为源码和模块图的一部分。Vite 解析 `<script type="module" src="...">` ，这个标签指向你的 JavaScript 源码。甚至内联引入 JavaScript 的 `<script type="module">` 和引用 CSS 的 `<link href>` 也能利用 Vite 特有的功能被解析。另外，`index.html` 中的 URL 将被自动转换，因此不再需要 `%PUBLIC_URL%` 占位符了。
+
+与静态 HTTP 服务器类似，Vite 也有 “根目录” 的概念，即服务文件的位置，在接下来的文档中你将看到它会以 `<root>` 代称。源码中的绝对 URL 路径将以项目的 “根” 作为基础来解析，因此你可以像在普通的静态文件服务器上一样编写代码（并且功能更强大！）。Vite 还能够处理依赖关系，解析处于根目录外的文件位置，这使得它即使在基于 monorepo 的方案中也十分有用。
+
+#### 3-1.修改vite的入口目录
+
+> 请跳过这一步操作
+
+> !! 注意 这会导致根目录完全变化...
+
+首先我们将index.html放入public文件夹中
+
+```
+root
+├── package.json
+└── public
+   └── index.html
+```
+
+> 通过启动参数修改入口目录
+
+```bash
+$ npx vite ./public
+```
+
+> 通过vite配置文件修改入口目录
+
+在根目录创建vite配置文件
+
+```
+root
+├── package.json
+├── public
+|  └── index.html
+└── vite.config.ts
+```
+
+配置vite的root入口目录
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+export default defineConfig({
+    root:'./public'
+})
+```
+
+再次调用启动
+
+```bash
+$ npx vite
+```
+
+#### 4.安装相应的语言和插件
+
+##### 1).Vue2
+
+安装vite-plugin-vue2插件和 vue2
+
+```bash
+$ npm add vue
+$ npm add vite-plugin-vue2 -D
+```
+
+为vite配置 vue2插件
+
+> 在根目录创建vite配置文件
+
+```
+root
+├── package.json
+├── index.html
+└── vite.config.ts
+```
+
+```js
+// vite.config.ts
+import { defineConfig } from 'vite'
+import { createVuePlugin } from 'vite-plugin-vue2'
+export default defineConfig({
+    plugins: [createVuePlugin()]
+})
+
+//  or  推荐使用上面的语法，defineConfig方法提供ts代码提示
+import { createVuePlugin } from 'vite-plugin-vue2'
+export default {
+    plugins: [createVuePlugin()]
+}
+```
+
+创建main.js入口 和 App.vue入口（js入口和vue入口）
+
+```
+root
+├── index.html
+├── package.json
+├── src
+|  ├── App.vue
+|  └── main.js
+└── vite.config.ts
+```
+
+```js
+// main.js
+import Vue from 'Vue'
+import App from './App.vue'
+new Vue({ render: (h) => h(App) }).$mount('#app')
+```
+
+```vue
+<template>
+  <div>我正在使用{{ version }}!</div>
+</template>
+<script>
+export default {
+  name: 'App',
+  data: () => ({ version: 'Vue2' })
+}
+</script>
+```
+
+index.html入口中 引入 js的使用
+
+> html中的链接、引用将会被vite解析
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="app">我已经被Vite监听了！~~</div>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
+```
+
+配置完毕运行
+
+```bash
+$ npx vite
+```
+
+##### 2).Vue3
+
+安装vite-plugin-vue2插件和 vue2
+
+```bash
+$ npm add vue@next
+$ npm add @vitejs/plugin-vue -D
+```
+
+为vite配置 vue2插件
+
+> 在根目录创建vite配置文件
+
+```
+root
+├── package.json
+├── index.html
+└── vite.config.ts
+```
+
+```js
+// vite.config.ts
+import { defineConfig } from 'vite'
+import Vue from '@vitejs/plugin-vue'
+export default defineConfig({
+    plugins: [Vue()]
+})
+```
+
+创建main.js入口 和 App.vue入口（js入口和vue入口）
+
+```
+root
+├── index.html
+├── package.json
+├── src
+|  ├── App.vue
+|  └── main.js
+└── vite.config.ts
+```
+
+```js
+// main.js
+import { createApp } from 'Vue'
+import App from './App.vue'
+createApp(App).mount('#app')
+```
+
+```vue
+<template>
+  <div>我正在使用{{ version }}!</div>
+</template>
+<script setup>
+import { ref } from 'vue'
+const version = ref('Vue3')
+</script>
+```
+
+index.html入口中 引入 js的使用
+
+> html中的链接、引用将会被vite解析
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="app">我已经被Vite监听了！~~</div>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
+```
+
+配置完毕运行
+
+```bash
+$ npx vite
 ```
 
 ---
