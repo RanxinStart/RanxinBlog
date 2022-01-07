@@ -100,7 +100,7 @@ for (let [key,value] of formData.entries()) {
    console.log(key,value);
 }
 
-/* 遍历fromData */
+/* 遍历formData */
 formData.forEach((...args)=>{
     console.log(args)
 })
