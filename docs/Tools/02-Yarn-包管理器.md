@@ -106,8 +106,6 @@ author:#作者
 license (MIT):#证书
 ```
 
-
-
 ## 添加依赖包
 
 添加一个依赖到配置中
@@ -156,6 +154,8 @@ $ yarn remove [package]
 ```
 
 ## 安装项目全部依赖
+
+yarn安装依赖会使用pnp安装,PnP 是 Yarn 的一个特性，不要将它与[pnpm](https://pnpm.js.org/)混淆,Plug'n'Play 是 2018 年 9 月推出的另一种安装策略。它呈现出适合大量项目的有趣特性，旨在与当前生态系统兼容。
 
 ```bash
 $ yarn 
