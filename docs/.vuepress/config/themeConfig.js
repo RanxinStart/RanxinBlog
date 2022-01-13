@@ -56,16 +56,13 @@ module.exports = {
             },
         ]
     },
-    // 导航栏配置
-    // nav: [
-    //   { text: '首页', link: '/' },
-    //   {
-    //     text: '开发', icon: 'reco-document',
-    //     items: [
-    //       { text: '前端', link: '/web/01-vue3' },
-    //       { text: '后端', link: 'url' },
-    //       { text: '工具', link: 'path' }
-    //     ]
-    //   },
-    // ],
+    // author
+    author: 'RanxinStart',
+    // 备案
+    record: '粤ICP备2021149156号',
+    recordLink: 'https://beian.miit.gov.cn/',
+    //  cyberSecurityRecord: '公安部备案文案',
+    //  cyberSecurityLink: '公安部备案指向链接',
+    // 项目开始时间，只填写年份
+    startYear: '2020'
 }

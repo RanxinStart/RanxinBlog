@@ -247,7 +247,7 @@ $ npx vite
 
 ##### 2).Vue3
 
-安装vite-plugin-vue2插件和 vue2
+安装@vitejs/plugin-vue插件和 vue3
 
 ```bash
 $ npm add vue@next
