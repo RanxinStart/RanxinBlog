@@ -8,6 +8,7 @@
  */
 module.exports = {
     type: 'blog',
+    subSidebar: 'auto',
     locales: {
         '/': {
             recoLocales: {
