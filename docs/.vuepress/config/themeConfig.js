@@ -59,7 +59,7 @@ module.exports = {
     // author
     author: 'RanxinStart',
     // 备案
-    record: '粤ICP备2021149156号',
+    record: '粤ICP备2021149156号-1',
     recordLink: 'https://beian.miit.gov.cn/',
     //  cyberSecurityRecord: '公安部备案文案',
     //  cyberSecurityLink: '公安部备案指向链接',
