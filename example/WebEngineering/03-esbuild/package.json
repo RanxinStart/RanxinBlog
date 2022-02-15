@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "esbuild ./src/app.js --bundle --outfile=./dist/build.js"
+    "build:react": "esbuild ./src/app.jsx --bundle --outfile=./dist/build.js",
+    "build:vue": "esbuild ./src/app.js --bundle --outfile=./dist/build.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "esbuild": "^0.14.21",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "vue": "^3.2.31"
   }
 }
