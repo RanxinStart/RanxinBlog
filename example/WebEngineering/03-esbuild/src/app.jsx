@@ -8,7 +8,7 @@ const App = () => {
             <span>count: {count} </span>
             <button onClick={() => setCount(count + 1)}>+</button>
         </div>
-        <h1>React + JSX + ESBuild~</h1>
+        <h1>React + JSX ++++ ESBuild~</h1>
     </div>
 }
 

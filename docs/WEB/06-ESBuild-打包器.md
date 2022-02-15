@@ -54,6 +54,336 @@ ESBuild去除Babel，PostCss支持，**仅作为基础构建使用**。效率更
 
 # ESBuild-基础使用
 
+首先需要初始化一个esbuild **或者** 全局安装一个esbuild
+
+```bash
+# 初始化一个npm
+$ npm init -y
+# 安装React和ESBuild
+$ npm i esbuild  #npm
+$ pnpm i esbuild  #pnpm
+$ yarn add esbuild  #yarn
+
+# or  也可以全局安装
+$ npm i esbuild -g
+```
+
+## 命令式选项
+
+### 0.无功能运行
+
+#### 示例文件
+
+```jsx
+/* test.jsx */
+const a = () => {
+    return <a>这是一个A标签</a>
+}
+```
+
+#### 运行esbuild打包
+
+```bash
+$ npx esbuild ./test.jsx
+```
+
+> 未输出,但返回了
+
+#### 手动导出到文件
+
+```bash
+$ npx esbuild ./test.jsx >> buildTest.js
+```
+
+导出结果
+
+```js
+/* buildTest.js */
+const a = () => {
+  return /* @__PURE__ */ React.createElement("a", null, "\u8FD9\u662FA\u6807\u7B7E");
+};
+```
+
+### 1.指定输出位置
+
+#### 示例文件
+
+```jsx
+/* test.jsx */
+const a = () => {
+    return <a>这是一个A标签</a>
+}
+```
+
+#### 运行esbuild打包
+
+```bash
+# 输出到文件
+$ npx esbuild ./test.jsx --outfile=./buildTest.js
+# 输出到文件夹 会在dist文件夹生成一个test.js
+$ npx esbuild ./test.jsx --outdir=./dist
+```
+
+#### 构建效果
+
+> 生成了一个buildTest.js文件,重复执行会覆盖之前的文件
+
+```js
+/* buildTest.js */
+const a = () => {
+  return /* @__PURE__ */ React.createElement("a", null, "\u8FD9\u662FA\u6807\u7B7E");
+};
+```
+
+### 2.捆绑包
+
+#### 示例文件
+
+```jsx
+/* test2.jsx */
+export const add = (a, b) => {
+    return a + b
+}
+```
+
+```jsx
+/* test.jsx */
+import { add } from './test2.jsx'
+export const b = () => {
+    return <div>
+        { add(1, 2) }
+    </div>
+}
+```
+
+运行esbuild打包，将入口中import的内容以及递归的import打包成一个文件
+
+> 与test.jsx有联系的包都会捆绑为一个js文件
+
+```bash
+$ npx esbuild ./test.jsx --bundle --outfile=./buildTest.js
+```
+
+#### 使用--bundle构建
+
+```js
+(() => {
+  // test2.jsx
+  var add = (a, b2) => {
+    return a + b2;
+  };
+
+  // test.jsx
+  var b = () => {
+    return /* @__PURE__ */ React.createElement("div", null, add(1, 2));
+  };
+})();
+```
+
+#### 不使用--bundel构建
+
+```jsx
+import { add } from "./test2.jsx";
+export const b = () => {
+  return /* @__PURE__ */ React.createElement("div", null, add(1, 2));
+};
+```
+
+### 3.定义全局/环境变量
+
+#### 示例文件
+
+```jsx
+export const b = () => {
+    return <div>
+        { NODE_ENV }
+    </div>
+}
+```
+
+#### 运行esbuild打包
+
+```bash
+$ npx esbuild ./test.jsx --outfile=./buildTest.js --define:NODE_ENV="'测试define选项！！'" 
+```
+
+#### 构建效果
+
+```js
+export const b = () => {
+  /* 此处将NODE_ENV给自动替换了 */
+  return /* @__PURE__ */ React.createElement("div", null, "test-define");
+};
+```
+
+### 4.压缩代码(minify)
+
+#### 示例文件
+
+```jsx
+/* test.jsx */
+const a = () => {
+    return <a>这是一个A标签</a>
+}
+```
+
+#### 运行esbuild打包
+
+```bash
+$ npx esbuild ./test.jsx --outfile=./buildTest.js --minify
+```
+
+#### 构建效果
+
+```jsx
+const a=()=>React.createElement("a",null,"\u8FD9\u662F\u4E00\u4E2AA\u6807\u7B7E");
+```
+
+### 5.输出格式
+
+#### 示例文件
+
+```jsx
+/* test.jsx */
+export const a = () => {
+    return <a>这是一个A标签</a>
+}
+```
+
+#### 运行esbuild打包
+
+```bash
+$ npx esbuild ./test.jsx --outfile=./buildTest.js --formart="cjs" # CommonJS
+$ npx esbuild ./test.jsx --outfile=./buildTest.js --formart="esm" # ESModule
+$ npx esbuild ./test.jsx --outfile=./buildTest.js --formart="iife" # 立即执行函数
+```
+
+#### cjs构建效果
+
+> node.js 运行模块
+
+```js
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __reExport = (target, module2, copyDefault, desc) => {
+  if (module2 && typeof module2 === "object" || typeof module2 === "function") {
+    for (let key of __getOwnPropNames(module2))
+      if (!__hasOwnProp.call(target, key) && (copyDefault || key !== "default"))
+        __defProp(target, key, { get: () => module2[key], enumerable: !(desc = __getOwnPropDesc(module2, key)) || desc.enumerable });
+  }
+  return target;
+};
+var __toCommonJS = /* @__PURE__ */ ((cache) => {
+  return (module2, temp) => {
+    return cache && cache.get(module2) || (temp = __reExport(__markAsModule({}), module2, 1), cache && cache.set(module2, temp), temp);
+  };
+})(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+var test_exports = {};
+__export(test_exports, {
+  a: () => a
+});
+const a = () => {
+  return /* @__PURE__ */ React.createElement("a", null, "\u8FD9\u662F\u4E00\u4E2AA\u6807\u7B7E");
+};
+module.exports = __toCommonJS(test_exports);
+```
+
+#### esm构建效果
+
+> es模块化
+>
+> 如果在html的script标签中使用需要添加 type="module"
+>
+> 如果在node环境使用需要.mjs后缀或是在package.json中配置"type": "module"
+
+```js
+const a = () => {
+  return /* @__PURE__ */ React.createElement("a", null, "\u8FD9\u662F\u4E00\u4E2AA\u6807\u7B7E");
+};
+export {
+  a
+};
+```
+
+#### iife构建效果
+
+```js
+(() => {
+  const a = () => {
+    return /* @__PURE__ */ React.createElement("a", null, "\u8FD9\u662F\u4E00\u4E2AA\u6807\u7B7E");
+  };
+})();
+```
+
+### 6.平台
+
+```bash
+$ npx esbuild --platform=node
+```
+
+可选值: node | browser | neutral
+
+### 7.服务
+
+esbuild服务可以在指定文件夹构建服务，并在每次浏览器访问时重新构建新的文件
+
+#### 启动服务
+
+> 指定的文件夹必须有index.html才可以启动，否则会报错
+
+```bash
+# 在当前文件夹启动服务
+$ npx esbuild --servedir=./
+```
+
+#### 指定端口号
+
+```bash
+$ npx esbuild --servedir=./ --serve=3000
+```
+
+#### 构建的文件输出到服务器
+
+```bash
+$ npx esbuild --servedir=./ --outfile=./build.js
+```
+
+这个时候 localhost:8000/build.js 将会在启动和每次访问时构建
+
+> 在index.html使用构建好的 localhost:8000/build.js 
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>esbuild</title>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script type="module" src="./build.js"></script>
+</html>
+```
+
+#### 捆绑包
+
+```bash
+$ npx esbuild --servedir=./ --outfile=./build.js --bundle
+```
+
+# ESBuild-示例
+
 ## React+ESBuild
 
 > ESBuild对React有内置的支持,可支持JSX的自动转换.
@@ -145,9 +475,15 @@ root
 </html>
 ```
 
+### 6.启动esbuild服务打开
+
 > 为了**防止跨域问题**，启动一个服务将网页打开
 
-![image-20220215135502424](image/06-ESBuild-打包器/image-20220215135502424.png)
+```bash
+$ npx esbuild --servedir=./ --serve=5050
+```
+
+![image-20220215172240049](image/06-ESBuild-打包器/image-20220215172240049.png)
 
 
 
@@ -250,9 +586,15 @@ root
 </html>
 ```
 
+### 6.启动esbuild服务打开
+
 > 为了**防止跨域问题**，启动一个服务将网页打开
 
-![image-20220215143330461](image/06-ESBuild-打包器/image-20220215143330461.png)
+```bash
+$ npx esbuild --servedir=./ --serve=5050
+```
+
+![image-20220215172158373](image/06-ESBuild-打包器/image-20220215172158373.png)
 
 
 
