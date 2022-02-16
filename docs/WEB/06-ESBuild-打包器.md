@@ -189,7 +189,92 @@ export const b = () => {
 };
 ```
 
-### 3.定义全局/环境变量
+### 3.外部包
+
+使用捆绑包时,有需要外部引入的包可以添加此参数。标记为外部包的导入将被保留，而不是被捆绑。
+
+#### 示例项目
+
+```bash
+# 安装一个包
+$ npm i react
+```
+
+#### 示例文件
+
+```jsx
+import React from 'react'
+export const a = () => {
+    return <a>这是一个A标签</a>
+}
+```
+
+#### 添加捆绑包和外部包运行
+
+```bash
+$ npx esbuild ./test.jsx --outfile=./buildTest.js --bundle --external:react
+# 如果是多个  --external:react --external:vue --external:lodash
+```
+
+#### 构建效果
+
+```js
+(() => {
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
+  var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof
+  ......
+  // 此处省略约20行
+                                   
+  // test.jsx
+  var import_react = __toESM(__require("react"));
+  var a = () => {
+    return /* @__PURE__ */ import_react.default.createElement("a", null, "\u8FD9\u662F\u4E00\u4E2AA\u6807\u7B7E");
+  };
+})();
+```
+
+#### 不指定外部构建效果
+
+```js
+(() => { 
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+  ......
+  // 此处省略约1600行
+  
+  // node_modules/.pnpm/registry.npmjs.org+react@17.0.2/node_modules/react/index.js
+  var require_react = __commonJS({
+    "node_modules/.pnpm/registry.npmjs.org+react@17.0.2/node_modules/react/index.js"(exports, module) {
+      "use strict";
+      if (false) {
+        module.exports = null;
+      } else {
+        module.exports = require_react_development();
+      }
+    }
+  });
+
+  // test.jsx
+  var import_react = __toESM(require_react());
+  var a = () => {
+    return /* @__PURE__ */ import_react.default.createElement("a", null, "\u8FD9\u662F\u4E00\u4E2AA\u6807\u7B7E");
+  };
+})();
+```
+
+
+
+### 4.定义全局/环境变量
 
 #### 示例文件
 
@@ -216,7 +301,7 @@ export const b = () => {
 };
 ```
 
-### 4.压缩代码(minify)
+### 5.压缩代码(minify)
 
 #### 示例文件
 
@@ -239,7 +324,7 @@ $ npx esbuild ./test.jsx --outfile=./buildTest.js --minify
 const a=()=>React.createElement("a",null,"\u8FD9\u662F\u4E00\u4E2AA\u6807\u7B7E");
 ```
 
-### 5.输出格式
+### 6.输出格式
 
 #### 示例文件
 
@@ -322,7 +407,7 @@ export {
 })();
 ```
 
-### 6.平台
+### 7.平台
 
 ```bash
 $ npx esbuild --platform=node
@@ -330,7 +415,7 @@ $ npx esbuild --platform=node
 
 可选值: node | browser | neutral
 
-### 7.服务
+### 8.服务
 
 esbuild服务可以在指定文件夹构建服务，并在每次浏览器访问时重新构建新的文件
 
@@ -376,11 +461,13 @@ $ npx esbuild --servedir=./ --outfile=./build.js
 </html>
 ```
 
-#### 捆绑包
+#### 也可以捆绑包等..
 
 ```bash
 $ npx esbuild --servedir=./ --outfile=./build.js --bundle
 ```
+
+### ex.[还有许多未记录API](https://esbuild.github.io/api/)
 
 # ESBuild-示例
 
