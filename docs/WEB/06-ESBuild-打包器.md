@@ -409,6 +409,8 @@ export {
 
 ### 7.平台
 
+#### 运行esbuild打包
+
 ```bash
 $ npx esbuild --platform=node
 ```
@@ -525,6 +527,113 @@ console输出![image-20220216143341751](image/06-ESBuild-打包器/image-2022021
 
 
 跳转查看代码![image-20220216143306272](image/06-ESBuild-打包器/image-20220216143306272.png)
+
+#### 4种模式
+
+##### 1.linked(默认)
+
+源映射与输出文件一起生成到单独的`buildTest.js`输出文件中，并且`buildTest.js`输出文件包含`//# sourceMappingURL=`指向输出文件的特殊注释`buildTest.js.map`。当您打开调试器时，浏览器就知道在哪里可以找到给定文件的源映射。
+
+```bash
+$ npx esbuild ./test.ts --sourcemap --outfile=./buildTest.js
+```
+
+##### 2.external
+
+与linked模式几乎相同，不同的点在于输出的`buildTest.js`文件不会包含`//# sourceMappingURL=`特殊注释，浏览器也无法找到原映射
+
+```bash
+$ npx esbuild ./test.ts --sourcemap=external --outfile=./buildTest.js
+```
+
+##### 3.inline
+
+不输出`buildTest.js.map`文件，直接将`buildTest.js.map`通过base64输出到`buildTest.js`文件中。`buildTest.js`文件包含`//# sourceMappingURL=`base64代码
+
+```bash
+$ npx esbuild ./test.ts --sourcemap=inline --outfile=./buildTest.js
+```
+
+![image-20220216181015168](image/06-ESBuild-打包器/image-20220216181015168.png)
+
+##### 4.both
+
+external和inline的结合,会生成`.js.map`文件，也会直接将`.js.map`通过base64输出到`.js`文件中。`buildTest.js`文件包含`//# sourceMappingURL=`base64代码
+
+```bash
+$ npx esbuild ./test.ts --sourcemap=both --outfile=./buildTest.js
+```
+
+
+
+### 10.转换兼容
+
+#### 示例文件
+
+```jsx
+/* test.jsx */
+const consoleChinese = async () => {
+    console?.log?.('中文会被转换')
+    await new Promise()
+}
+consoleChinese()
+```
+
+#### 运行esbuild打包
+
+> 默认为 esnext，最新的规则 不做转换。
+
+```bash
+$ npx esbuild ./test.ts --target=es2020,chrome58,firefox57,safari11,edge16,node12
+```
+
+设定指定兼容的es版本或浏览器版本，目前不支持es6=>es5的转换。如果设置为es5那么文件中使用了es6的代码将会无法构建打包
+
+#### 构建效果
+
+```js
+/* es6 */
+var __async = (__this, __arguments, generator) => {
+  return new Promise((resolve, reject) => {
+    var fulfilled = (value) => {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var rejected = (value) => {
+      try {
+        step(generator.throw(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+    step((generator = generator.apply(__this, __arguments)).next());
+  });
+};
+const consoleChinese = () => __async(this, null, function* () {
+  var _a;
+  (_a = console == null ? void 0 : console.log) == null ? void 0 : _a.call(console, "\u4E2D\u6587\u4F1A\u88AB\u8F6C\u6362");
+  yield new Promise();
+});
+consoleChinese();
+```
+
+```js
+/* es2019 */
+/* es10 */
+/* 因为es10支持async/await 但不支持 ?. 链式访问 */
+const consoleChinese = async () => {
+  var _a;
+  (_a = console == null ? void 0 : console.log) == null ? void 0 : _a.call(console, "\u4E2D\u6587\u4F1A\u88AB\u8F6C\u6362");
+  await new Promise();
+};
+consoleChinese();
+```
+
+
 
 ### ex.[还有许多未记录API](https://esbuild.github.io/api/)
 

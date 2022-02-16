@@ -1,5 +1,6 @@
 /* test.jsx */
-const consoleChinese = () => {
-    console.log('中文会被转换')
+const consoleChinese = async () => {
+    console?.log?.('中文会被转换')
+    await new Promise()
 }
 consoleChinese()

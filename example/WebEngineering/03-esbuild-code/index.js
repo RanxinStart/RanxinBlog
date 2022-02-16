@@ -8,10 +8,14 @@ const result = transformSync(file.toString(), {
 
 const result = buildSync({
     entryPoints: ['./test.jsx'],
-    sourcemap: true,
-    bundle: true,
-    minify: true,
+    // sourcemap: 'inline',
+    // splitting: true,
+    // bundle: true,
+    // minify: true,
+    // format: 'esm',
+    target: 'es2019',
     outfile: './dist/build.js'
+    // outdir: './dist'
 })
 
 console.log(result)
