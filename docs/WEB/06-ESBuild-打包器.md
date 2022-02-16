@@ -467,6 +467,65 @@ $ npx esbuild --servedir=./ --outfile=./build.js
 $ npx esbuild --servedir=./ --outfile=./build.js --bundle
 ```
 
+### 9.源代码
+
+开发环境的很多代码是在浏览器是无法运行的，例如less、sass、jsx。这些代码需要经过构建之后才可以在浏览器中运行。但构建后的代码的可读性会大幅度降低，在开发调试期间定位代码和问题就变得相当麻烦。
+
+> 一般来说仅在开发环境中使用，方便调试的时候看真实代码。如果在生产使用将会暴露源代码。
+
+#### 示例文件
+
+```jsx
+/* test.jsx */
+const consoleChinese = () => {
+    console.log('中文会被转换')
+}
+consoleChinese()
+```
+
+#### 运行esbuild打包
+
+```bash
+$ npx esbuild ./test.jsx --bundle --outfile=./buildTest.js --minify --sourcemap
+```
+
+#### 构建效果
+
+> 会生成两个文件,一个正常build构建的文件和一个.map原代码文件。
+
+```js
+/* buildTest.js */
+(()=>{var o=()=>{console.log("\u4E2D\u6587\u4F1A\u88AB\u8F6C\u6362")};o();})();
+
+// 使用shurcemap后会自动为build文件添加下面这条注释，让浏览器识别
+//# sourceMappingURL=buildTest.js.map
+```
+
+```json
+/* buildTest.js.map */
+{
+  "version": 3,
+  "sources": ["test.jsx"],
+  "sourcesContent": ["/* test.jsx */\r\nconst consoleChinese = () => {\r\n    console.log('\u4E2D\u6587\u4F1A\u88AB\u8F6C\u6362')\r\n}\r\nconsoleChinese()\r\n"],
+  "mappings": "MACA,GAAM,GAAiB,IAAM,CACzB,QAAQ,IAAI,yCAEhB",
+  "names": []
+}
+```
+
+这时在浏览器中，查看代码报错或是断点,可以看到我们的示例
+
+console输出![image-20220216143430514](image/06-ESBuild-打包器/image-20220216143430514.png)
+
+跳转查看代码![image-20220216143028075](image/06-ESBuild-打包器/image-20220216143028075.png)
+
+#### 不使用源代码构建
+
+console输出![image-20220216143341751](image/06-ESBuild-打包器/image-20220216143341751.png)
+
+
+
+跳转查看代码![image-20220216143306272](image/06-ESBuild-打包器/image-20220216143306272.png)
+
 ### ex.[还有许多未记录API](https://esbuild.github.io/api/)
 
 # ESBuild-示例
@@ -690,13 +749,14 @@ $ npx esbuild --servedir=./ --serve=5050
 # 参考资料
 
 - [esbuild](https://esbuild.github.io/)
-- [Esbuild 为什么那么快](https://zhuanlan.zhihu.com/p/379164359)	author:[@XXX](http://ranxin.cc)
+- [Esbuild 为什么那么快](https://zhuanlan.zhihu.com/p/379164359)
 - [Esbuild 为什么那么快](https://zhuanlan.zhihu.com/p/379164359)	author:[@XXX](http://ranxin.cc)
 
 
 
 # 扩展阅读
 
+- [ESBuild 官方网站](https://esbuild.github.io/)
 - [JavaScript Source Map 详解](http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html)
 - [浅析 Tree Shaking](https://zhuanlan.zhihu.com/p/127804516)
 
