@@ -469,7 +469,34 @@ $ npx esbuild --servedir=./ --outfile=./build.js
 $ npx esbuild --servedir=./ --outfile=./build.js --bundle
 ```
 
-### 9.源代码
+### 9.监听修改
+
+#### 运行esbuild监听打包
+
+```bash
+$ npx esbuild ./test.jsx --bundle --outfile=./buildTest.js --minify --watch
+```
+
+#### 当检测到修改
+
+> test.jsx修改时,将会自动重新构建
+
+```bash
+# [watch] build finished, watching for changes...
+# [watch] build started (change: "test.jsx")
+# [watch] build finished
+```
+
+> 关联文件修改也会自动重新构建
+
+```jsx
+/* test.jsx */
+import test2 from './test2.jsx'
+```
+
+这时，修改test2文件也会自动重新构建。
+
+### 10.源代码
 
 开发环境的很多代码是在浏览器是无法运行的，例如less、sass、jsx。这些代码需要经过构建之后才可以在浏览器中运行。但构建后的代码的可读性会大幅度降低，在开发调试期间定位代码和问题就变得相当麻烦。
 
@@ -566,7 +593,7 @@ $ npx esbuild ./test.ts --sourcemap=both --outfile=./buildTest.js
 
 
 
-### 10.转换兼容
+### 11.转换兼容
 
 #### 示例文件
 
@@ -635,7 +662,86 @@ consoleChinese();
 
 
 
-### ex.[还有许多未记录API](https://esbuild.github.io/api/)
+## 代码式使用
+
+esbuild除了在控制台直接使用,也可以在js代码或是go代码中使用。这里仅说明在js中如何使用
+
+### 1.build
+
+传入一个选项,使用起来其实和命令式没有太大的区别
+
+> 随便一段例子即可理解，第一个options就是原来命令式的参数
+
+```js
+import { build } from 'esbuild'
+build({
+    entryPoints: [resolve(__dirname, '../app.jsx')],
+    // sourcemap: 'inline',
+    // splitting: true,
+    bundle: true,
+    minify: true,
+    // format: 'esm',
+    jsxFactory: 'VUE_H_FUN',
+    jsxFragment: 'VUE_FRAGMENT_TAG',
+    outfile: resolve(__dirname, '../../dist/build.js'),
+    inject: [resolve(__dirname, '../inject/index.js')]
+    // outdir: './dist'
+}).then(()=>{
+    /* 返回一个promise 可以在构建完成后继续执行 */
+})
+```
+
+### 2.buildSync
+
+功能和build相同，不过是阻塞的。会在构建完成之后才会继续执行他下面的代码
+
+### 3.transform
+
+传一段代码字符串和一个选项,选项和build方法的选项没什么区别，但少了许多选项。
+
+> **必须要指定 loader**才可以使用
+
+```js
+transform('(()=><a>我是A标签</a>)()',{
+    // 这些注释的全部都不能用,因为只能转换一段字符
+    // entryPoints: [resolve(__dirname, '../app.jsx')],
+    // outfile: resolve(__dirname, '../../dist/build.js'),
+    // inject: [resolve(__dirname, '../inject/index.js')]
+    // outdir: './dist'
+    // bundle: true,
+    minify: true,
+    jsxFactory: 'h',
+    jsxFragment: 'Fragment',
+    // loader这一项必须要
+    loader: 'jsx'
+}).then((res)=>{
+    console.log(res)
+    /*
+	{
+	  warnings: [],
+	  code: 'h("a",null,"\\u6211\\u662FA\\u6807\\u7B7E");\n',
+	  map: ''
+	}
+	*/
+})
+```
+
+### 4.transformSync
+
+功能和transform相同，不过是阻塞的。会在转换完成后将内容返回
+
+```js
+const result = transformSync('(()=><a>我是A标签</a>)()',{
+    minify: true,
+	// loader这一项必须要
+    loader: 'jsx'
+})
+console.log(result)
+```
+
+
+
+## ex.[还有许多未记录API](https://esbuild.github.io/api/)
 
 # ESBuild-示例
 
@@ -772,8 +878,8 @@ root
 ### 3.编写一些Vue3内容
 
 ```js
+/* app.js */
 import { createApp, defineComponent, h, ref } from 'vue'
-
 const App = defineComponent({
     setup() {
         const count = ref(0)
@@ -851,15 +957,70 @@ $ npx esbuild --servedir=./ --serve=5050
 
 ![image-20220215172158373](image/06-ESBuild-打包器/image-20220215172158373.png)
 
+### 7.Vue使用JSX
 
+修改3步骤的值为jsx而不是h函数,文件名也要修改为`.jsx`
 
+```jsx
+/* app.jsx */
+import { createApp, defineComponent, ref } from 'vue'
 
+const App = defineComponent({
+    setup() {
+        const count = ref(0)
+        return {
+            count
+        }
+    },
+    render() {
+        return (
+            <>
+                <div>
+                    <div>
+                        <span>count:{this.count}</span>
+                        <button onClick={() => this.count++}>+</button>
+                    </div>
+                    <h1>Vue3 + esbuild~</h1>
+                </div>
+            </>
+        )
+    }
+})
+
+const app = createApp(App)
+app.mount('#app')
+```
+
+创建一个文件，将vue的h函数和<>空标签注入到esbuild再打包
+
+```js
+/* inject.js */
+import { h, Fragment } from 'vue'
+export { h, Fragment  }
+```
+
+最终目录结构
+
+```bash
+# 目录结构
+root
+├── package.json
+└── src
+   ├── inject.js
+   └── app.jsx
+   
+```
+
+打包命令修改jsx-factory的渲染函数和jsx-fragment渲染空标签
+
+```bash
+$ npx esbuild ./src/app.jsx --inject:./src/inject.js --bundle --outfile=./dist/build.js --jsx-factory=h --jsx-fragment=Fragment 
+```
 
 # 参考资料
 
 - [esbuild](https://esbuild.github.io/)
 - [Esbuild 为什么那么快](https://zhuanlan.zhihu.com/p/379164359)
-- [Esbuild 为什么那么快](https://zhuanlan.zhihu.com/p/379164359)	author:[@XXX](http://ranxin.cc)
 
 
 

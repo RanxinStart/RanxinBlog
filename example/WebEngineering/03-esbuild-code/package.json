@@ -2,10 +2,10 @@
   "name": "03-esbuild-code",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
+  "main": "./src/build/index.js",
   "scripts": {
-    "start": "node index.js",
+    "build:start": "esbuild ./src/build/index.js --outfile=./src/build/build.js --platform=node --format=cjs",
+    "start": "npm run build:start && node ./src/build/build.js",
     "serve": "esbuild --servedir=./"
   },
   "keywords": [],
@@ -13,7 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "esbuild": "^0.14.21",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "vue": "^3.2.31"
   }
 }
