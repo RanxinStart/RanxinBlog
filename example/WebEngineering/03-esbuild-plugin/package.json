@@ -1,0 +1,17 @@
+{
+  "name": "03-esbuild-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "esbuild": "^0.14.22",
+    "esno": "^0.14.1",
+    "vue": "^3.2.31"
+  }
+}

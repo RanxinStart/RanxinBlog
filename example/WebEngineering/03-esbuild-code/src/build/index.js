@@ -7,7 +7,7 @@ const result = transformSync(file.toString(), {
     loader: 'jsx'
 }) */
 
-const result = transformSync({
+const result = build({
     entryPoints: [resolve(__dirname, '../app.jsx')],
     // sourcemap: 'inline',
     // splitting: true,
@@ -17,7 +17,7 @@ const result = transformSync({
     jsxFactory: 'VUE_H_FUN',
     jsxFragment: 'VUE_FRAGMENT_TAG',
     outfile: resolve(__dirname, '../../dist/build.js'),
-    inject: [resolve(__dirname, '../inject/index.js')]
+    inject: [resolve(__dirname, '../inject/index.js')],
     // outdir: './dist'
 })
 

@@ -4,6 +4,7 @@ date: '2022-2-14 15:14:48'
 sidebar: 'auto'
 categories:
  - 前端
+ - 工程化
  - 服务端
 tags:
  - ENV
@@ -1017,6 +1018,44 @@ root
 $ npx esbuild ./src/app.jsx --inject:./src/inject.js --bundle --outfile=./dist/build.js --jsx-factory=h --jsx-fragment=Fragment 
 ```
 
+# ESBuild-插件
+
+esbuild的插件只能在代码式使用，不能在命令中直接使用。`transform`方法中也无法使用插件，只有 `build`和`buildSync`才能使用插件。插件API是新的API，目前还是处于实验阶段。可能会在esbuild 1.0.0正式版本发布之前，发生一定的变化导致代码出错。
+
+## 1.官方插件社区
+
+[官方插件社区](https://github.com/esbuild/community-plugins)是由github中的共享md的文档展示，可以通过pull请求发布自己的插件到上面。
+
+## 2.使用插件
+
+例如兼容Vue3的SFC模式(.vue文件)
+
+1）.创建一个Vue3 + ESBuild项目
+
+```bash
+# 初始化npm
+$ npm init -y
+# 安装相应依赖
+$ npm i esbuild vue esno  #npm
+$ pnpm i esbuild vue esno  #pnpm
+```
+
+
+
+```bash
+# 目录结构
+root
+├── node_modules
+├── package.json
+├── script
+|  └── build.js
+└── src
+   ├── App.vue
+   └── main.js
+```
+
+
+
 # 参考资料
 
 - [esbuild](https://esbuild.github.io/)
@@ -1029,6 +1068,7 @@ $ npx esbuild ./src/app.jsx --inject:./src/inject.js --bundle --outfile=./dist/b
 - [ESBuild 官方网站](https://esbuild.github.io/)
 - [JavaScript Source Map 详解](http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html)
 - [浅析 Tree Shaking](https://zhuanlan.zhihu.com/p/127804516)
+- [ESBuild 插件社区](https://github.com/esbuild/community-plugins)
 
 
 
