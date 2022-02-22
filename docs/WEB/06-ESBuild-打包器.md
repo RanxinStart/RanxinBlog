@@ -47,11 +47,11 @@ Go 并发模型比传统的多线程模型更快。而JavaScript是单线程，�
 
 ESBuild仅提供了构建一个**现代** Web 应用所需的最小功能集合。
 
-ESBuild也明确声明未来不会内置Vue、Angular等其他框架SFC**模板解析**支持。
+ESBuild也明确声明未来不会内置Vue、Angular等其他框架**模板解析**支持。
 
 ESBuild重写整套编译流程、**js、ts、jsx、json 等资源文件的加载、解析、链接、代码**生成逻辑。
 
-ESBuild去除Babel，PostCss支持，**仅作为基础构建使用**。效率更高但需要使用Babel、PostCss需要二次封装开发后才能使用。(例如其他模板SFC的支持、Babel、PostCss。当然这些转义需要额外的时间..) 
+ESBuild去除Babel，PostCss支持，**仅作为基础构建使用**。效率更高但需要使用Babel、PostCss需要二次封装开发后才能使用。(例如其他模板的支持、Babel、PostCss。当然这些转义需要额外的时间..) 
 
 # ESBuild-基础使用
 
@@ -1020,7 +1020,7 @@ $ npx esbuild ./src/app.jsx --inject:./src/inject.js --bundle --outfile=./dist/b
 
 # ESBuild-插件
 
-esbuild的插件只能在代码式使用，不能在命令中直接使用。`transform`方法中也无法使用插件，只有 `build`和`buildSync`才能使用插件。插件API是新的API，目前还是处于实验阶段。可能会在esbuild 1.0.0正式版本发布之前，发生一定的变化导致代码出错。
+esbuild的插件只能在代码式使用，不能在命令中直接使用。`transform`方法中也无法使用插件，只有 `build`方法才能使用插件。插件API是新的API，目前还是处于实验阶段。可能会在esbuild 1.0.0正式版本发布之前，发生一定的变化导致代码出错。
 
 ## 1.官方插件社区
 
@@ -1030,17 +1030,19 @@ esbuild的插件只能在代码式使用，不能在命令中直接使用。`tra
 
 例如兼容Vue3的SFC模式(.vue文件)
 
-1）.创建一个Vue3 + ESBuild项目
+### 1).创建一个Vue3 + ESBuild项目
+
+esno是node运行module的一个更好的解决方案.
+
+esbuild-plugin-vue-next是esbuild打包`.vue`文件的插件
 
 ```bash
 # 初始化npm
 $ npm init -y
 # 安装相应依赖
-$ npm i esbuild vue esno  #npm
-$ pnpm i esbuild vue esno  #pnpm
+$ npm i esbuild vue esno esbuild-plugin-vue-next  #npm
+$ pnpm i esbuild vue esno esbuild-plugin-vue-next  #pnpm
 ```
-
-
 
 ```bash
 # 目录结构
@@ -1048,13 +1050,73 @@ root
 ├── node_modules
 ├── package.json
 ├── script
-|  └── build.js
-└── src
+|  └── build.js # 编写代码式esbuild打包
+└── src # 基本的vue入口和页面
    ├── App.vue
    └── main.js
 ```
 
+### 2).基本的vue入口和页面
 
+```js
+/* main.js */
+import App from './App.vue'
+import { createApp } from 'vue'
+const app = createApp(App)
+app.mount('#app')
+```
+
+```vue
+<!-- App.vue -->
+<template>
+  <div>Hello Vue And SFC</div>
+</template>
+```
+
+### 3).编写esbuild打包代码
+
+```js
+/* build.js */
+import { build } from 'esbuild'
+import { resolve } from 'path'
+import vueNext from 'esbuild-plugin-vue-next'
+
+build({
+    entryPoints: [resolve(__dirname, '../src/main.js')],
+    outfile: resolve(__dirname, '../dist/build.js'),
+    bundle: true,
+    // 使用npm安装的.vue文件解析插件
+    plugins: [vueNext()]
+})
+```
+
+### 4).运行build.js打包
+
+使用esno运行,可以将es6的文件预先打包成cjs再运行
+
+```bash
+$ npx esno .\script\build.js
+```
+
+打包效果
+
+```js
+// vue3打包的代码
+// ... line 6100
+
+// vue-template:App.vue?type=template
+function render(_ctx, _cache) {
+ return openBlock(), createElementBlock("div", null, "Hello Vue And SFC");
+}
+
+// src/App.vue
+App_default.render = render;
+var App_default2 = App_default;
+
+// src/main.js
+var app = createApp(App_default2);
+app.mount("#app");
+```
 
 # 参考资料
 
