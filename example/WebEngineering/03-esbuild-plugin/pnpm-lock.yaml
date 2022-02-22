@@ -2,11 +2,13 @@ lockfileVersion: 5.3
 
 specifiers:
   esbuild: ^0.14.22
+  esbuild-plugin-vue-next: ^0.1.4
   esno: ^0.14.1
   vue: ^3.2.31
 
 dependencies:
   esbuild: registry.npmjs.org/esbuild/0.14.22
+  esbuild-plugin-vue-next: registry.npmjs.org/esbuild-plugin-vue-next/0.1.4
   esno: registry.npmjs.org/esno/0.14.1
   vue: registry.npmjs.org/vue/3.2.31
 
@@ -130,6 +132,14 @@ packages:
     version: 4.0.0
     dependencies:
       semver: registry.npmjs.org/semver/7.3.5
+    dev: false
+
+  registry.npmjs.org/convert-source-map/1.8.0:
+    resolution: {integrity: sha512-+OQdjP49zViI/6i7nIJpA8rAl4sV/JdPfU9nZs3VqOwGIgizICvuN2ru6fMd+4llL0tar18UYJXfZ/TWtmhUjA==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/convert-source-map/-/convert-source-map-1.8.0.tgz}
+    name: convert-source-map
+    version: 1.8.0
+    dependencies:
+      safe-buffer: registry.npmjs.org/safe-buffer/5.1.2
     dev: false
 
   registry.npmjs.org/cross-spawn/7.0.3:
@@ -322,6 +332,17 @@ packages:
     dev: false
     optional: true
 
+  registry.npmjs.org/esbuild-plugin-vue-next/0.1.4:
+    resolution: {integrity: sha512-n4DF5xY/GJ9DdRM4+MvV14Rrr+7xGhtv9/0xIxfzN6qSIMdXfZ6g4PVX735NYC7vGRr9KyZGRWST5jCyHQ6n5g==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/esbuild-plugin-vue-next/-/esbuild-plugin-vue-next-0.1.4.tgz}
+    name: esbuild-plugin-vue-next
+    version: 0.1.4
+    peerDependencies:
+      '@vue/compiler-sfc': '>=3.0.0'
+    dependencies:
+      convert-source-map: registry.npmjs.org/convert-source-map/1.8.0
+      hash-sum: registry.npmjs.org/hash-sum/2.0.0
+    dev: false
+
   registry.npmjs.org/esbuild-register/3.3.2_esbuild@0.14.22:
     resolution: {integrity: sha512-jceAtTO6zxPmCfSD5cBb3rgIK1vmuqCKYwgylHiS1BF4pq0jJiJb4K2QMuqF4BEw7XDBRatYzip0upyTzfkgsQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/esbuild-register/-/esbuild-register-3.3.2.tgz}
     id: registry.npmjs.org/esbuild-register/3.3.2
@@ -425,6 +446,12 @@ packages:
     version: 2.0.2
     dev: false
 
+  registry.npmjs.org/hash-sum/2.0.0:
+    resolution: {integrity: sha512-WdZTbAByD+pHfl/g9QSsBIIwy8IT+EsPiKDs0KNX+zSHhdDLFKdZu0BQHljvO+0QI/BasbMSUa8wYNCZTvhslg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/hash-sum/-/hash-sum-2.0.0.tgz}
+    name: hash-sum
+    version: 2.0.0
+    dev: false
+
   registry.npmjs.org/import-meta-resolve/1.1.1:
     resolution: {integrity: sha512-JiTuIvVyPaUg11eTrNDx5bgQ/yMKMZffc7YSjvQeSMXy58DO2SQ8BtAf3xteZvmzvjYh14wnqNjL8XVeDy2o9A==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/import-meta-resolve/-/import-meta-resolve-1.1.1.tgz}
     name: import-meta-resolve
@@ -486,6 +513,12 @@ packages:
       nanoid: registry.npmjs.org/nanoid/3.3.1
       picocolors: registry.npmjs.org/picocolors/1.0.0
       source-map-js: registry.npmjs.org/source-map-js/1.0.2
+    dev: false
+
+  registry.npmjs.org/safe-buffer/5.1.2:
+    resolution: {integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz}
+    name: safe-buffer
+    version: 5.1.2
     dev: false
 
   registry.npmjs.org/semver/7.3.5:
